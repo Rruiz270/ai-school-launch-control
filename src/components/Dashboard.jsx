@@ -69,10 +69,10 @@ const Dashboard = () => {
     },
     {
       title: 'Team Members',
-      value: PROJECT_DATA.kpis.find(k => k.id === 'kpi3').current,
+      value: projectData.kpis.find(k => k.id === 'kpi3').current,
       icon: Users,
       color: 'purple',
-      subtitle: `of ${PROJECT_DATA.kpis.find(k => k.id === 'kpi3').target} target`
+      subtitle: `of ${projectData.kpis.find(k => k.id === 'kpi3').target} target`
     }
   ];
 
