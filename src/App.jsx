@@ -17,13 +17,15 @@ function AppContent() {
   const [activeView, setActiveView] = useState('dashboard');
   
   // Add error handling for context
-  let calculateOverallProgress;
+  let calculateOverallProgress, resetToDefault;
   try {
     const projectContext = useProject();
     calculateOverallProgress = projectContext.calculateOverallProgress;
+    resetToDefault = projectContext.resetToDefault;
   } catch (error) {
     console.error('Error accessing project context:', error);
     calculateOverallProgress = () => 0;
+    resetToDefault = () => {};
   }
   
   const navigationItems = [
@@ -133,6 +135,12 @@ function AppContent() {
                   <span className="text-gray-600">Overall Progress:</span>
                   <span className="ml-2 font-bold text-blue-600">{calculateOverallProgress()}%</span>
                 </div>
+                <button 
+                  onClick={resetToDefault}
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Reset to Sample Data
+                </button>
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   Export Report
                 </button>
