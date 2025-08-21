@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 import { Calendar, CheckCircle, Circle, AlertCircle, Clock } from 'lucide-react';
-import { PROJECT_DATA } from '../data/projectData';
+import { useProject } from '../context/ProjectContext';
+import TaskEditModal from './TaskEditModal';
 
 const Timeline = () => {
+  const { projectData, updateTask, getWorkstreamById } = useProject();
   const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedWorkstream, setSelectedWorkstream] = useState(null);
+
+  const handleTaskClick = (task) => {
+    if (task.type === 'task') {
+      const workstream = getWorkstreamById(task.workstreamId);
+      setSelectedTask(task);
+      setSelectedWorkstream(workstream);
+    }
+  };
+
+  const handleTaskSave = (updatedTask) => {
+    updateTask(updatedTask.id, updatedTask);
+  };
   
   // Generate timeline data from workstreams
   const generateTimelineData = () => {
     const timelineItems = [];
     
-    PROJECT_DATA.workstreams.forEach(workstream => {
+    projectData.workstreams.forEach(workstream => {
       workstream.tasks.forEach(task => {
         timelineItems.push({
           ...task,
@@ -22,7 +38,7 @@ const Timeline = () => {
       });
     });
     
-    PROJECT_DATA.milestones.forEach(milestone => {
+    projectData.milestones.forEach(milestone => {
       timelineItems.push({
         ...milestone,
         type: 'milestone'
@@ -140,7 +156,8 @@ const Timeline = () => {
                     <div className="flex-1">
                       <div className={`bg-white rounded-lg shadow p-4 ${
                         isMilestone ? 'border-2 border-purple-200' : ''
-                      }`}>
+                      } ${isTask ? 'cursor-pointer hover:shadow-md transition-shadow' : ''}`}
+                      onClick={() => isTask && handleTaskClick(item)}>
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
                             <h5 className="font-medium text-gray-900">
@@ -223,6 +240,18 @@ const Timeline = () => {
           </div>
         ))}
       </div>
+
+      {/* Task Edit Modal */}
+      <TaskEditModal
+        task={selectedTask}
+        workstream={selectedWorkstream}
+        isOpen={!!selectedTask}
+        onClose={() => {
+          setSelectedTask(null);
+          setSelectedWorkstream(null);
+        }}
+        onSave={handleTaskSave}
+      />
     </div>
   );
 };

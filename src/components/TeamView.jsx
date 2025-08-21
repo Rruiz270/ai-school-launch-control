@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { User, Mail, Phone, Calendar, CheckCircle, Clock, AlertTriangle } from 'lucide-react';
-import { PROJECT_DATA, getTasksByStatus } from '../data/projectData';
+import { useProject } from '../context/ProjectContext';
+import TaskEditModal from './TaskEditModal';
 
 const TeamView = () => {
+  const { projectData, updateTask, getWorkstreamById } = useProject();
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedWorkstream, setSelectedWorkstream] = useState(null);
+
+  const handleTaskClick = (task) => {
+    const workstream = getWorkstreamById(task.workstreamId);
+    setSelectedTask(task);
+    setSelectedWorkstream(workstream);
+  };
+
+  const handleTaskSave = (updatedTask) => {
+    updateTask(updatedTask.id, updatedTask);
+  };
+
   // Get unique assignees and their tasks
   const getTeamMembers = () => {
     const members = {};
     
-    PROJECT_DATA.workstreams.forEach(workstream => {
+    projectData.workstreams.forEach(workstream => {
       workstream.tasks.forEach(task => {
         if (!members[task.assignee]) {
           members[task.assignee] = {
@@ -19,6 +34,7 @@ const TeamView = () => {
         }
         members[task.assignee].tasks.push({
           ...task,
+          workstreamId: workstream.id,
           workstreamName: workstream.name,
           workstreamColor: workstream.color
         });
@@ -149,7 +165,11 @@ const TeamView = () => {
                 <div className="space-y-2">
                   <h5 className="font-medium text-gray-900 text-sm">Recent Tasks</h5>
                   {member.tasks.slice(0, 4).map((task) => (
-                    <div key={task.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                    <div 
+                      key={task.id} 
+                      className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0 cursor-pointer hover:bg-gray-50 transition-colors rounded px-2"
+                      onClick={() => handleTaskClick(task)}
+                    >
                       <div className="flex items-center space-x-2">
                         {getTaskStatusIcon(task.status)}
                         <div className="flex-1">
@@ -201,6 +221,18 @@ const TeamView = () => {
           );
         })}
       </div>
+
+      {/* Task Edit Modal */}
+      <TaskEditModal
+        task={selectedTask}
+        workstream={selectedWorkstream}
+        isOpen={!!selectedTask}
+        onClose={() => {
+          setSelectedTask(null);
+          setSelectedWorkstream(null);
+        }}
+        onSave={handleTaskSave}
+      />
     </div>
   );
 };

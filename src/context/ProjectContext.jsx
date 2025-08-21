@@ -91,6 +91,15 @@ export const ProjectProvider = ({ children }) => {
     }));
   };
 
+  const updateRisk = (riskId, updates) => {
+    setProjectData(prevData => ({
+      ...prevData,
+      risks: prevData.risks.map(risk =>
+        risk.id === riskId ? { ...risk, ...updates } : risk
+      )
+    }));
+  };
+
   const resetToDefault = () => {
     setProjectData(PROJECT_DATA);
     localStorage.removeItem('ai-school-project-data');
@@ -179,6 +188,7 @@ export const ProjectProvider = ({ children }) => {
     deleteTask,
     updateKPI,
     updateMilestone,
+    updateRisk,
     resetToDefault,
     getTasksByStatus,
     getUpcomingDeadlines,

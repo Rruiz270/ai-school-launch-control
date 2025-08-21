@@ -5,11 +5,23 @@ import {
   Building2, DollarSign, Laptop, GraduationCap,
   Megaphone, Shield, Settings
 } from 'lucide-react';
-import { PROJECT_DATA } from '../data/projectData';
+import { useProject } from '../context/ProjectContext';
+import TaskEditModal from './TaskEditModal';
 
 const Workstreams = () => {
+  const { projectData, updateTask, getWorkstreamById } = useProject();
   const [expandedWorkstream, setExpandedWorkstream] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedWorkstream, setSelectedWorkstream] = useState(null);
+
+  const handleTaskClick = (task, workstream) => {
+    setSelectedTask(task);
+    setSelectedWorkstream(workstream);
+  };
+
+  const handleTaskSave = (updatedTask) => {
+    updateTask(updatedTask.id, updatedTask);
+  };
 
   const getWorkstreamIcon = (workstreamId) => {
     const icons = {
@@ -59,19 +71,19 @@ const Workstreams = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
             <div className="text-3xl font-bold text-gray-900">
-              {PROJECT_DATA.workstreams.length}
+              {projectData.workstreams.length}
             </div>
             <div className="text-sm text-gray-600">Active Workstreams</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-blue-600">
-              {PROJECT_DATA.workstreams.reduce((sum, ws) => sum + ws.tasks.length, 0)}
+              {projectData.workstreams.reduce((sum, ws) => sum + ws.tasks.length, 0)}
             </div>
             <div className="text-sm text-gray-600">Total Tasks</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-green-600">
-              {PROJECT_DATA.workstreams.reduce((sum, ws) => 
+              {projectData.workstreams.reduce((sum, ws) => 
                 sum + ws.tasks.filter(t => t.status === 'completed').length, 0
               )}
             </div>
@@ -82,7 +94,7 @@ const Workstreams = () => {
 
       {/* Workstreams List */}
       <div className="space-y-4">
-        {PROJECT_DATA.workstreams.map((workstream) => {
+        {projectData.workstreams.map((workstream) => {
           const Icon = getWorkstreamIcon(workstream.id);
           const isExpanded = expandedWorkstream === workstream.id;
           const completedTasks = workstream.tasks.filter(t => t.status === 'completed').length;
@@ -156,7 +168,7 @@ const Workstreams = () => {
                         <div 
                           key={task.id}
                           className="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
-                          onClick={() => setSelectedTask(task)}
+                          onClick={() => handleTaskClick(task, workstream)}
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
@@ -232,74 +244,17 @@ const Workstreams = () => {
         })}
       </div>
 
-      {/* Task Detail Modal */}
-      {selectedTask && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-gray-900">{selectedTask.title}</h3>
-                <button
-                  onClick={() => setSelectedTask(null)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              
-              {/* Task details would go here */}
-              <div className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Status</label>
-                  <div className="mt-1">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedTask.status)}`}>
-                      {selectedTask.status}
-                    </span>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Progress</label>
-                  <div className="mt-1">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex-1 bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-blue-600 h-2 rounded-full"
-                          style={{ width: `${selectedTask.progress}%` }}
-                        />
-                      </div>
-                      <span className="text-sm font-medium">{selectedTask.progress}%</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {selectedTask.subtasks && (
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Subtasks</label>
-                    <div className="mt-2 space-y-2">
-                      {selectedTask.subtasks.map(subtask => (
-                        <div key={subtask.id} className="flex items-center space-x-2">
-                          <input 
-                            type="checkbox" 
-                            checked={subtask.completed}
-                            readOnly
-                            className="rounded text-blue-600"
-                          />
-                          <span className={subtask.completed ? 'line-through text-gray-400' : 'text-gray-700'}>
-                            {subtask.title}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Task Edit Modal */}
+      <TaskEditModal
+        task={selectedTask}
+        workstream={selectedWorkstream}
+        isOpen={!!selectedTask}
+        onClose={() => {
+          setSelectedTask(null);
+          setSelectedWorkstream(null);
+        }}
+        onSave={handleTaskSave}
+      />
     </div>
   );
 };

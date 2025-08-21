@@ -1,10 +1,36 @@
-import React from 'react';
-import { AlertTriangle, AlertCircle, Info } from 'lucide-react';
-import { PROJECT_DATA } from '../data/projectData';
+import React, { useState } from 'react';
+import { AlertTriangle, AlertCircle, Info, Edit2, Save, X } from 'lucide-react';
+import { useProject } from '../context/ProjectContext';
 
 const RiskMatrix = () => {
+  const { projectData, updateRisk } = useProject();
+  const [editingRisk, setEditingRisk] = useState(null);
+  const [editValues, setEditValues] = useState({});
+  
   const probabilityLevels = ['low', 'medium', 'high'];
   const impactLevels = ['low', 'medium', 'high', 'critical'];
+
+  const handleEditStart = (risk) => {
+    setEditingRisk(risk.id);
+    setEditValues({
+      title: risk.title,
+      probability: risk.probability,
+      impact: risk.impact,
+      owner: risk.owner,
+      mitigation: risk.mitigation
+    });
+  };
+
+  const handleEditSave = (riskId) => {
+    updateRisk(riskId, editValues);
+    setEditingRisk(null);
+    setEditValues({});
+  };
+
+  const handleEditCancel = () => {
+    setEditingRisk(null);
+    setEditValues({});
+  };
 
   const getRiskScore = (probability, impact) => {
     const probScore = probabilityLevels.indexOf(probability) + 1;
@@ -42,7 +68,7 @@ const RiskMatrix = () => {
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Overview</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {['low', 'medium', 'high', 'critical'].map(level => {
-            const count = PROJECT_DATA.risks.filter(risk => 
+            const count = projectData.risks.filter(risk => 
               getRiskLevel(risk.probability, risk.impact).toLowerCase() === level
             ).length;
             
@@ -86,7 +112,7 @@ const RiskMatrix = () => {
                       {probability}
                     </td>
                     {impactLevels.map(impact => {
-                      const cellRisks = PROJECT_DATA.risks.filter(
+                      const cellRisks = projectData.risks.filter(
                         risk => risk.probability === probability && risk.impact === impact
                       );
                       const cellColor = getRiskColor(probability, impact);
@@ -126,7 +152,7 @@ const RiskMatrix = () => {
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Register</h3>
           <div className="space-y-4">
-            {PROJECT_DATA.risks
+            {projectData.risks
               .sort((a, b) => getRiskScore(b.probability, b.impact) - getRiskScore(a.probability, a.impact))
               .map((risk) => {
                 const riskLevel = getRiskLevel(risk.probability, risk.impact);
@@ -134,36 +160,114 @@ const RiskMatrix = () => {
                 const riskIcon = getRiskIcon(risk.probability, risk.impact);
                 
                 return (
-                  <div key={risk.id} className="border rounded-lg p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-start space-x-3">
-                        <div className={`${riskColor} rounded p-2 text-white`}>
-                          {riskIcon}
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-gray-900">{risk.title}</h4>
-                          <div className="flex items-center space-x-4 mt-1 text-sm">
-                            <span className="text-gray-600">
-                              Owner: <span className="font-medium">{risk.owner}</span>
-                            </span>
-                            <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white ${riskColor}`}>
-                              {riskLevel} Risk
-                            </span>
+                  <div key={risk.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    {editingRisk === risk.id ? (
+                      <div className="space-y-3">
+                        <input
+                          type="text"
+                          value={editValues.title}
+                          onChange={(e) => setEditValues({...editValues, title: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          placeholder="Risk title"
+                        />
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Probability</label>
+                            <select
+                              value={editValues.probability}
+                              onChange={(e) => setEditValues({...editValues, probability: e.target.value})}
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            >
+                              {probabilityLevels.map(level => (
+                                <option key={level} value={level} className="capitalize">{level}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Impact</label>
+                            <select
+                              value={editValues.impact}
+                              onChange={(e) => setEditValues({...editValues, impact: e.target.value})}
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            >
+                              {impactLevels.map(level => (
+                                <option key={level} value={level} className="capitalize">{level}</option>
+                              ))}
+                            </select>
                           </div>
                         </div>
+                        <input
+                          type="text"
+                          value={editValues.owner}
+                          onChange={(e) => setEditValues({...editValues, owner: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          placeholder="Risk owner"
+                        />
+                        <textarea
+                          value={editValues.mitigation}
+                          onChange={(e) => setEditValues({...editValues, mitigation: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          rows={3}
+                          placeholder="Mitigation strategy"
+                        />
+                        <div className="flex justify-end space-x-2">
+                          <button
+                            onClick={handleEditCancel}
+                            className="px-3 py-1 text-sm text-gray-600 hover:text-gray-800 transition-colors flex items-center space-x-1"
+                          >
+                            <X className="w-4 h-4" />
+                            <span>Cancel</span>
+                          </button>
+                          <button
+                            onClick={() => handleEditSave(risk.id)}
+                            className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800 transition-colors flex items-center space-x-1"
+                          >
+                            <Save className="w-4 h-4" />
+                            <span>Save</span>
+                          </button>
+                        </div>
                       </div>
-                      <div className="text-right text-sm">
-                        <div className="text-gray-600">Impact</div>
-                        <div className="font-medium capitalize">{risk.impact}</div>
-                        <div className="text-gray-600 mt-1">Probability</div>
-                        <div className="font-medium capitalize">{risk.probability}</div>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-50 rounded p-3">
-                      <h5 className="font-medium text-gray-900 text-sm mb-1">Mitigation Strategy</h5>
-                      <p className="text-sm text-gray-700">{risk.mitigation}</p>
-                    </div>
+                    ) : (
+                      <>
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start space-x-3">
+                            <div className={`${riskColor} rounded p-2 text-white`}>
+                              {riskIcon}
+                            </div>
+                            <div>
+                              <h4 className="font-medium text-gray-900">{risk.title}</h4>
+                              <div className="flex items-center space-x-4 mt-1 text-sm">
+                                <span className="text-gray-600">
+                                  Owner: <span className="font-medium">{risk.owner}</span>
+                                </span>
+                                <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white ${riskColor}`}>
+                                  {riskLevel} Risk
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-2">
+                            <div className="text-right text-sm">
+                              <div className="text-gray-600">Impact</div>
+                              <div className="font-medium capitalize">{risk.impact}</div>
+                              <div className="text-gray-600 mt-1">Probability</div>
+                              <div className="font-medium capitalize">{risk.probability}</div>
+                            </div>
+                            <button
+                              onClick={() => handleEditStart(risk)}
+                              className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-gray-50 rounded p-3">
+                          <h5 className="font-medium text-gray-900 text-sm mb-1">Mitigation Strategy</h5>
+                          <p className="text-sm text-gray-700">{risk.mitigation}</p>
+                        </div>
+                      </>
+                    )}
                   </div>
                 );
               })}
@@ -175,7 +279,7 @@ const RiskMatrix = () => {
       <div className="bg-white rounded-lg shadow p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Immediate Risk Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {PROJECT_DATA.risks
+          {projectData.risks
             .filter(risk => getRiskScore(risk.probability, risk.impact) >= 6)
             .map((risk) => (
               <div key={risk.id} className="border-l-4 border-red-500 bg-red-50 p-4 rounded">

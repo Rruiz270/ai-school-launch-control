@@ -1,8 +1,31 @@
-import React from 'react';
-import { TrendingUp, TrendingDown, DollarSign, Users, Building, Zap } from 'lucide-react';
-import { PROJECT_DATA } from '../data/projectData';
+import React, { useState } from 'react';
+import { TrendingUp, TrendingDown, DollarSign, Users, Building, Zap, Edit2, Save, X } from 'lucide-react';
+import { useProject } from '../context/ProjectContext';
 
 const KPITracker = () => {
+  const { projectData, updateKPI } = useProject();
+  const [editingKPI, setEditingKPI] = useState(null);
+  const [editValues, setEditValues] = useState({});
+
+  const handleEditStart = (kpi) => {
+    setEditingKPI(kpi.id);
+    setEditValues({
+      current: kpi.current,
+      target: kpi.target
+    });
+  };
+
+  const handleEditSave = (kpiId) => {
+    updateKPI(kpiId, editValues);
+    setEditingKPI(null);
+    setEditValues({});
+  };
+
+  const handleEditCancel = () => {
+    setEditingKPI(null);
+    setEditValues({});
+  };
+
   const formatValue = (value, unit) => {
     if (unit === 'R$') {
       return new Intl.NumberFormat('pt-BR', {
@@ -42,13 +65,13 @@ const KPITracker = () => {
     <div className="space-y-6">
       {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {PROJECT_DATA.kpis.map((kpi) => {
+        {projectData.kpis.map((kpi) => {
           const Icon = getKPIIcon(kpi.id);
           const percentage = kpi.target > 0 ? (kpi.current / kpi.target) * 100 : 0;
           const progressColor = getProgressColor(percentage);
 
           return (
-            <div key={kpi.id} className="bg-white rounded-lg shadow p-6">
+            <div key={kpi.id} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 bg-blue-50 rounded-lg">
@@ -56,27 +79,74 @@ const KPITracker = () => {
                   </div>
                   <h3 className="font-medium text-gray-900">{kpi.name}</h3>
                 </div>
-                <div className="text-right">
-                  <div className="text-sm text-gray-500">Progress</div>
-                  <div className="text-lg font-bold text-gray-900">
-                    {percentage.toFixed(0)}%
+                <div className="flex items-center space-x-2">
+                  <div className="text-right">
+                    <div className="text-sm text-gray-500">Progress</div>
+                    <div className="text-lg font-bold text-gray-900">
+                      {percentage.toFixed(0)}%
+                    </div>
                   </div>
+                  <button
+                    onClick={() => handleEditStart(kpi)}
+                    className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <Edit2 className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Current</span>
-                  <span className="font-semibold text-gray-900">
-                    {formatValue(kpi.current, kpi.unit)}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Target</span>
-                  <span className="font-semibold text-gray-900">
-                    {formatValue(kpi.target, kpi.unit)}
-                  </span>
-                </div>
+                {editingKPI === kpi.id ? (
+                  <>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-gray-600">Current</span>
+                      <input
+                        type="number"
+                        value={editValues.current}
+                        onChange={(e) => setEditValues({...editValues, current: parseFloat(e.target.value) || 0})}
+                        className="w-24 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-right"
+                      />
+                    </div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-gray-600">Target</span>
+                      <input
+                        type="number"
+                        value={editValues.target}
+                        onChange={(e) => setEditValues({...editValues, target: parseFloat(e.target.value) || 0})}
+                        className="w-24 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-right"
+                      />
+                    </div>
+                    <div className="flex justify-end space-x-2 mb-3">
+                      <button
+                        onClick={handleEditCancel}
+                        className="px-2 py-1 text-xs text-gray-600 hover:text-gray-800 transition-colors"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                      <button
+                        onClick={() => handleEditSave(kpi.id)}
+                        className="px-2 py-1 text-xs text-blue-600 hover:text-blue-800 transition-colors"
+                      >
+                        <Save className="w-3 h-3" />
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Current</span>
+                      <span className="font-semibold text-gray-900">
+                        {formatValue(kpi.current, kpi.unit)}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Target</span>
+                      <span className="font-semibold text-gray-900">
+                        {formatValue(kpi.target, kpi.unit)}
+                      </span>
+                    </div>
+                  </>
+                )}
                 
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div 
@@ -99,7 +169,7 @@ const KPITracker = () => {
         <h3 className="text-lg font-semibold text-gray-900 mb-6">KPI Analysis</h3>
         
         <div className="space-y-6">
-          {PROJECT_DATA.kpis.map((kpi) => {
+          {projectData.kpis.map((kpi) => {
             const percentage = kpi.target > 0 ? (kpi.current / kpi.target) * 100 : 0;
             
             return (
