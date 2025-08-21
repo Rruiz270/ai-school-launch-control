@@ -5,10 +5,36 @@ import {
 } from 'lucide-react';
 
 const TaskEditModal = ({ task, workstream, isOpen, onClose, onSave }) => {
-  const [editedTask, setEditedTask] = useState({
-    ...task,
-    subtasks: task.subtasks || []
+  // Initialize with safe defaults
+  const [editedTask, setEditedTask] = useState(() => {
+    if (!task) {
+      return {
+        id: '',
+        title: '',
+        status: 'not-started',
+        priority: 'medium',
+        assignee: '',
+        dueDate: '',
+        progress: 0,
+        milestone: false,
+        subtasks: []
+      };
+    }
+    return {
+      ...task,
+      subtasks: task.subtasks || []
+    };
   });
+
+  // Update editedTask when task changes
+  React.useEffect(() => {
+    if (task) {
+      setEditedTask({
+        ...task,
+        subtasks: task.subtasks || []
+      });
+    }
+  }, [task]);
 
   if (!isOpen || !task) return null;
 
