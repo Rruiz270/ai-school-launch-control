@@ -21,7 +21,7 @@ const PublicPartnerships = () => {
         schools: 150,
         status: 'negotiation',
         timeline: 'Q4 2025 - Q2 2026',
-        revenue: 48000000, // R$200/student/month * 12 months * 200k students
+        revenue: 60000000, // R$250/student/month * 12 months * 200k students
         progress: 35,
         keyContact: 'Secretaria Municipal de Educação',
         challenges: ['Teacher union negotiations', 'Technology infrastructure', 'Political alignment']
@@ -34,10 +34,36 @@ const PublicPartnerships = () => {
         schools: 120,
         status: 'pilot',
         timeline: 'Q2 2026 - Q4 2026',
-        revenue: 36000000,
+        revenue: 45000000,
         progress: 15,
         keyContact: 'SME Rio',
         challenges: ['Budget allocation', 'Infrastructure readiness']
+      },
+      {
+        id: 'curitiba',
+        name: 'Curitiba',
+        state: 'Paraná',
+        students: 120000,
+        schools: 90,
+        status: 'negotiation',
+        timeline: 'Q1 2027 - Q3 2027',
+        revenue: 36000000,
+        progress: 25,
+        keyContact: 'Secretaria Municipal de Educação de Curitiba',
+        challenges: ['Smart city integration', 'Municipal budget alignment', 'Educational technology standards']
+      },
+      {
+        id: 'florianopolis',
+        name: 'Florianópolis',
+        state: 'Santa Catarina',
+        students: 60000,
+        schools: 45,
+        status: 'planning',
+        timeline: 'Q2 2027 - Q4 2027',
+        revenue: 18000000,
+        progress: 10,
+        keyContact: 'Secretaria de Educação de Florianópolis',
+        challenges: ['Innovation district partnerships', 'University collaboration (UFSC)', 'Tech sector alignment']
       },
       {
         id: 'belo-horizonte',
@@ -47,7 +73,7 @@ const PublicPartnerships = () => {
         schools: 80,
         status: 'planning',
         timeline: 'Q1 2027',
-        revenue: 19200000,
+        revenue: 24000000,
         progress: 5,
         keyContact: 'Secretaria Municipal',
         challenges: ['Initial assessment', 'Stakeholder alignment']
@@ -185,13 +211,13 @@ const PublicPartnerships = () => {
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active Pilots</p>
-              <p className="text-2xl font-bold text-blue-600">3</p>
+              <p className="text-sm font-medium text-gray-600">Active Partnerships</p>
+              <p className="text-2xl font-bold text-blue-600">5</p>
             </div>
             <School className="w-8 h-8 text-blue-600" />
           </div>
           <div className="mt-4 text-xs text-gray-500">
-            São Paulo, Rio, Belo Horizonte
+            SP, Rio, Curitiba, Florianópolis, BH
           </div>
         </div>
 
@@ -387,10 +413,10 @@ const PublicPartnerships = () => {
               <div>
                 <h5 className="font-medium text-emerald-800 mb-2">Implementation Timeline</h5>
                 <ul className="text-sm text-emerald-700 space-y-1">
-                  <li>• 2025-2026: Pilot partnerships (3 cities)</li>
-                  <li>• 2027-2028: Regional expansion (20 cities)</li>
-                  <li>• 2029-2030: State-level partnerships</li>
-                  <li>• 2031-2035: National scale (100+ municipalities)</li>
+                  <li>• 2025-2026: Pilot partnerships (5 cities including PR/SC)</li>
+                  <li>• 2027-2028: Southern region expansion (25 cities)</li>
+                  <li>• 2029-2030: State-level partnerships across regions</li>
+                  <li>• 2031-2035: National scale (120+ municipalities)</li>
                 </ul>
               </div>
             </div>

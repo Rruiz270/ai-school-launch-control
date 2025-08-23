@@ -209,7 +209,7 @@ const MasterTimeline = () => {
             sector: 'public',
             status: 'pending',
             critical: false,
-            description: 'Expand to Brasília, Belo Horizonte, Salvador'
+            description: 'Expand to Curitiba (PR), Florianópolis (SC), Belo Horizonte'
           }
         ],
         Q3: [
