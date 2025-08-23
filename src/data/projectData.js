@@ -1,4 +1,5 @@
 // AI School Brazil - Complete Project Management Data
+// AI School Brazil - Comprehensive Project Data (Updated with Alpha School Research & Financial Model)
 export const PROJECT_DATA = {
   workstreams: [
     {
@@ -152,35 +153,50 @@ export const PROJECT_DATA = {
         },
         {
           id: 't2',
-          title: 'Platform architecture design',
-          status: 'not-started',
+          title: 'Platform architecture design (INCEPT/TIMEBACK model)',
+          status: 'in-progress',
           priority: 'critical',
           dueDate: '2025-10-31',
           assignee: 'Jay + Team',
-          progress: 0,
+          progress: 25,
           subtasks: [
             { id: 't2.1', title: 'BNCC curriculum mapping', completed: false },
-            { id: 't2.2', title: 'AI integration strategy', completed: false },
-            { id: 't2.3', title: 'System architecture doc', completed: false }
+            { id: 't2.2', title: 'AI integration strategy (Multi-LLM orchestration)', completed: true },
+            { id: 't2.3', title: 'System architecture doc (Alpha School model adaptation)', completed: false },
+            { id: 't2.4', title: 'Vision monitoring system design', completed: false },
+            { id: 't2.5', title: 'Anti-pattern detection algorithms', completed: false }
           ]
         },
         {
           id: 't3',
-          title: 'MVP development - Core AI Tutoring',
+          title: 'MVP development - Core AI Tutoring (Brazilian INCEPT)',
           status: 'not-started',
           priority: 'critical',
           dueDate: '2026-03-31',
           assignee: 'Tech Team',
-          progress: 0
+          progress: 0,
+          subtasks: [
+            { id: 't3.1', title: 'Multi-LLM integration (GPT-4, Claude, Gemini)', completed: false },
+            { id: 't3.2', title: 'Portuguese language optimization', completed: false },
+            { id: 't3.3', title: 'BNCC curriculum prompts', completed: false },
+            { id: 't3.4', title: 'Mastery-based progression (90%+ requirement)', completed: false },
+            { id: 't3.5', title: 'Personalization engine', completed: false }
+          ]
         },
         {
           id: 't4',
-          title: 'Parent portal development',
+          title: 'TIMEBACK Operating System - Parent & Guide Portals',
           status: 'not-started',
           priority: 'high',
           dueDate: '2026-06-30',
           assignee: 'Tech Team',
-          progress: 0
+          progress: 0,
+          subtasks: [
+            { id: 't4.1', title: 'Parent progress monitoring dashboard', completed: false },
+            { id: 't4.2', title: 'Guide intervention system', completed: false },
+            { id: 't4.3', title: 'Real-time behavior analysis', completed: false },
+            { id: 't4.4', title: 'App store ecosystem setup', completed: false }
+          ]
         },
         {
           id: 't5',
@@ -204,16 +220,19 @@ export const PROJECT_DATA = {
       tasks: [
         {
           id: 'e1',
-          title: 'Life skills curriculum design',
-          status: 'not-started',
+          title: 'Brazilian Life Skills Curriculum (24 Skills + Alpha Model)',
+          status: 'in-progress',
           priority: 'high',
           dueDate: '2025-10-31',
           assignee: 'Whitney',
-          progress: 0,
+          progress: 15,
           subtasks: [
-            { id: 'e1.1', title: 'Map life skills to age groups', completed: false },
-            { id: 'e1.2', title: 'Design daily schedules', completed: false },
-            { id: 'e1.3', title: 'Create assessment methods', completed: false }
+            { id: 'e1.1', title: 'Map Alpha School 24 life skills to age groups', completed: true },
+            { id: 'e1.2', title: 'Design Brazilian workshop adaptations', completed: false },
+            { id: 'e1.3', title: 'Triathlon workshop (Rubik\'s + juggling + running)', completed: false },
+            { id: 'e1.4', title: 'Entrepreneurship programs (Airbnb, business sims)', completed: false },
+            { id: 'e1.5', title: 'Gaming with Grit workshops', completed: false },
+            { id: 'e1.6', title: 'HypeSquad team building system', completed: false }
           ]
         },
         {
@@ -227,12 +246,18 @@ export const PROJECT_DATA = {
         },
         {
           id: 'e3',
-          title: 'AI guide training program',
+          title: 'AI Guide Training Program (Alpha School Model)',
           status: 'not-started',
           priority: 'high',
           dueDate: '2026-03-31',
           assignee: 'Whitney',
-          progress: 0
+          progress: 0,
+          subtasks: [
+            { id: 'e3.1', title: 'Sports/performance background recruitment', completed: false },
+            { id: 'e3.2', title: 'Daily 1-on-1 meeting protocols', completed: false },
+            { id: 'e3.3', title: 'Motivation and high standards training', completed: false },
+            { id: 'e3.4', title: 'R$100k+ compensation structure', completed: false }
+          ]
         },
         {
           id: 'e4',
@@ -383,14 +408,19 @@ export const PROJECT_DATA = {
         },
         {
           id: 'm6',
-          title: 'Achieve 750 enrollments',
+          title: 'Achieve 750 Year 1 enrollments (1,500 Year 2 target)',
           status: 'not-started',
           priority: 'critical',
           dueDate: '2026-12-31',
           assignee: 'Marketing Director',
           progress: 0,
           milestone: true,
-          kpi: { target: 750, current: 0, unit: 'students' }
+          kpi: { target: 750, current: 0, unit: 'students' },
+          subtasks: [
+            { id: 'm6.1', title: 'São Paulo/Rio location final decision', completed: false },
+            { id: 'm6.2', title: 'Premium family targeting (R$10K+ income)', completed: false },
+            { id: 'm6.3', title: 'R$2,500/month competitive positioning', completed: false }
+          ]
         }
       ]
     },
@@ -492,17 +522,20 @@ export const PROJECT_DATA = {
   ],
   
   milestones: [
-    { id: 'm1', title: 'Funding Secured', date: '2025-11-15', status: 'pending', critical: true },
-    { id: 'm2', title: 'Construction Begins', date: '2025-12-01', status: 'pending', critical: true },
-    { id: 'm3', title: 'Tech Team Complete', date: '2025-10-31', status: 'pending', critical: false },
+    { id: 'm1', title: 'Series A Funding Secured (R$13M)', date: '2025-11-15', status: 'pending', critical: true },
+    { id: 'm2', title: 'Government Building Partnership Finalized', date: '2025-12-01', status: 'pending', critical: true },
+    { id: 'm3', title: 'Harvard Tech Team Complete (Jay + 4)', date: '2025-10-31', status: 'pending', critical: false },
     { id: 'm4', title: 'Head of School Hired', date: '2025-10-31', status: 'pending', critical: true },
-    { id: 'm5', title: 'Marketing Website Live', date: '2025-12-31', status: 'pending', critical: false },
-    { id: 'm6', title: 'MVP Platform Ready', date: '2026-03-31', status: 'pending', critical: true },
-    { id: 'm7', title: 'Construction 50%', date: '2026-05-31', status: 'pending', critical: false },
-    { id: 'm8', title: 'Campus Tours Begin', date: '2026-08-01', status: 'pending', critical: true },
-    { id: 'm9', title: 'Construction Complete', date: '2026-10-30', status: 'pending', critical: true },
-    { id: 'm10', title: '750 Students Enrolled', date: '2026-12-31', status: 'pending', critical: true },
-    { id: 'm11', title: 'School Opens!', date: '2027-01-15', status: 'pending', critical: true }
+    { id: 'm5', title: 'Brand Identity & Website Live', date: '2025-12-31', status: 'pending', critical: false },
+    { id: 'm6', title: 'INCEPT MVP Platform Ready', date: '2026-03-31', status: 'pending', critical: true },
+    { id: 'm7', title: 'TIMEBACK Operating System Live', date: '2026-06-30', status: 'pending', critical: true },
+    { id: 'm8', title: '24 Life Skills Curriculum Complete', date: '2026-05-31', status: 'pending', critical: false },
+    { id: 'm9', title: 'Campus Tours Begin (750 target)', date: '2026-08-01', status: 'pending', critical: true },
+    { id: 'm10', title: 'Construction Complete (São Paulo/Rio)', date: '2026-10-30', status: 'pending', critical: true },
+    { id: 'm11', title: '750 Students Enrolled Year 1', date: '2026-12-31', status: 'pending', critical: true },
+    { id: 'm12', title: 'AI School Brazil Opens! (2x Learning in 2 Hours)', date: '2027-01-15', status: 'pending', critical: true },
+    { id: 'm13', title: 'Franchise Development Program Launch', date: '2027-06-30', status: 'pending', critical: false },
+    { id: 'm14', title: 'Technology Adoption Licensing (25K students)', date: '2027-12-31', status: 'pending', critical: false }
   ],
   
   risks: [
@@ -524,18 +557,18 @@ export const PROJECT_DATA = {
     },
     {
       id: 'risk3',
-      title: 'Tech Platform Not Ready',
+      title: 'INCEPT/TIMEBACK Platform Not Ready',
       probability: 'low',
       impact: 'critical',
-      mitigation: 'Phased launch, backup licensed content, extra developers',
+      mitigation: 'Harvard team expertise, Alpha School proven model, phased launch with basic AI first',
       owner: 'Jay'
     },
     {
       id: 'risk4',
-      title: 'Low Initial Enrollment',
+      title: 'Low Initial Enrollment (750 target)',
       probability: 'medium',
       impact: 'high',
-      mitigation: 'Aggressive marketing, early bird incentives, referral program',
+      mitigation: 'Premium positioning at R$2,500/month, São Paulo/Rio location advantage, 2x learning proof',
       owner: 'Marketing Director'
     },
     {
@@ -543,18 +576,37 @@ export const PROJECT_DATA = {
       title: 'Regulatory Approval Delays',
       probability: 'low',
       impact: 'critical',
-      mitigation: 'Early engagement with authorities, expert consultants',
+      mitigation: 'Early engagement with authorities, expert consultants, government building partnership advantage',
       owner: 'Legal Team'
+    },
+    {
+      id: 'risk6',
+      title: 'Competition from Traditional Schools',
+      probability: 'high',
+      impact: 'medium',
+      mitigation: 'First-mover advantage, proven Alpha School results, unique 2x learning value proposition',
+      owner: 'Marketing Director'
+    },
+    {
+      id: 'risk7',
+      title: 'Parent Skepticism of AI Education',
+      probability: 'medium',
+      impact: 'high',
+      mitigation: 'Transparent demo programs, Alpha School success stories, guide human touch emphasis',
+      owner: 'Head of School'
     }
   ],
   
   kpis: [
-    { id: 'kpi1', name: 'Funding Progress', current: 0, target: 13000000, unit: 'R$' },
-    { id: 'kpi2', name: 'Students Enrolled', current: 0, target: 750, unit: 'students' },
-    { id: 'kpi3', name: 'Staff Hired', current: 3, target: 70, unit: 'people' },
-    { id: 'kpi4', name: 'Construction Progress', current: 0, target: 100, unit: '%' },
-    { id: 'kpi5', name: 'Platform Development', current: 5, target: 100, unit: '%' },
-    { id: 'kpi6', name: 'Marketing Reach', current: 0, target: 50000, unit: 'families' }
+    { id: 'kpi1', name: 'Series A Funding Progress', current: 0, target: 13000000, unit: 'R$', description: 'R$13M for flagship + technology' },
+    { id: 'kpi2', name: 'Year 1 Students Enrolled', current: 0, target: 750, unit: 'students', description: '750 Year 1, 1,500 Year 2 target' },
+    { id: 'kpi3', name: 'Core Team Hired', current: 3, target: 70, unit: 'people', description: 'Harvard team + 50 AI guides + specialists' },
+    { id: 'kpi4', name: 'Construction Progress', current: 0, target: 100, unit: '%', description: 'São Paulo/Rio flagship school' },
+    { id: 'kpi5', name: 'INCEPT Platform Development', current: 15, target: 100, unit: '%', description: 'AI tutoring + TIMEBACK system' },
+    { id: 'kpi6', name: 'Premium Family Reach', current: 0, target: 50000, unit: 'families', description: 'R$10K+ income demographic' },
+    { id: 'kpi7', name: '24 Life Skills Curriculum', current: 10, target: 100, unit: '%', description: 'Brazilian adaptation of Alpha model' },
+    { id: 'kpi8', name: 'Government Partnership', current: 60, target: 100, unit: '%', description: 'Building agreement finalization' },
+    { id: 'kpi9', name: 'Technology Adoption Pipeline', current: 0, target: 25000, unit: 'students', description: 'Year 1 licensing revenue stream' }
   ]
 };
 
