@@ -41,7 +41,7 @@ export const PROJECT_DATA = {
         },
         {
           id: 'f3',
-          title: 'Close R$13M funding',
+          title: 'Close R$20M funding',
           status: 'not-started',
           priority: 'critical',
           dueDate: '2025-11-15',
@@ -522,7 +522,7 @@ export const PROJECT_DATA = {
   ],
   
   milestones: [
-    { id: 'm1', title: 'Series A Funding Secured (R$13M)', date: '2025-11-15', status: 'pending', critical: true },
+    { id: 'm1', title: 'Series A Funding Secured (R$20M)', date: '2025-11-15', status: 'pending', critical: true },
     { id: 'm2', title: 'Government Building Partnership Finalized', date: '2025-12-01', status: 'pending', critical: true },
     { id: 'm3', title: 'Harvard Tech Team Complete (Jay + 4)', date: '2025-10-31', status: 'pending', critical: false },
     { id: 'm4', title: 'Head of School Hired', date: '2025-10-31', status: 'pending', critical: true },
@@ -598,7 +598,7 @@ export const PROJECT_DATA = {
   ],
   
   kpis: [
-    { id: 'kpi1', name: 'Series A Funding Progress', current: 0, target: 13000000, unit: 'R$', description: 'R$13M for flagship + technology' },
+    { id: 'kpi1', name: 'Series A Funding Progress', current: 0, target: 20000000, unit: 'R$', description: 'R$20M for flagship + technology + public pilot' },
     { id: 'kpi2', name: 'Year 1 Students Enrolled', current: 0, target: 750, unit: 'students', description: '750 Year 1, 1,500 Year 2 target' },
     { id: 'kpi3', name: 'Core Team Hired', current: 3, target: 70, unit: 'people', description: 'Harvard team + 50 AI guides + specialists' },
     { id: 'kpi4', name: 'Construction Progress', current: 0, target: 100, unit: '%', description: 'São Paulo/Rio flagship school' },

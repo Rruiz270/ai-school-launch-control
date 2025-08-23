@@ -18,11 +18,11 @@ const MasterTimeline = () => {
         Q3: [
           {
             id: 'funding-close',
-            title: 'Series A Funding Secured (R$13M)',
+            title: 'Series A Funding Secured (R$20M)',
             sector: 'private',
             status: 'pending',
             critical: true,
-            description: 'Close Series A for flagship school and technology development'
+            description: 'Close Series A for flagship school, technology development, and public sector pilot preparation'
           },
           {
             id: 'architect-selection',
