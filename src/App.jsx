@@ -3,7 +3,7 @@ import {
   LayoutDashboard, Calendar, Users, AlertCircle, 
   Target, CheckCircle2, Clock, TrendingUp,
   Building2, DollarSign, Laptop, GraduationCap,
-  Megaphone, Shield, Settings
+  Megaphone, Shield, Settings, School, GitMerge
 } from 'lucide-react';
 import { ProjectProvider, useProject } from './context/ProjectContext';
 import Dashboard from './components/Dashboard';
@@ -12,6 +12,8 @@ import Workstreams from './components/Workstreams';
 import RiskMatrix from './components/RiskMatrix';
 import TeamView from './components/TeamView';
 import KPITracker from './components/KPITracker';
+import PublicPartnerships from './components/PublicPartnerships';
+import MasterTimeline from './components/MasterTimeline';
 
 function AppContent() {
   const [activeView, setActiveView] = useState('dashboard');
@@ -29,8 +31,10 @@ function AppContent() {
   }
   
   const navigationItems = [
-    { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
-    { id: 'timeline', name: 'Timeline', icon: Calendar },
+    { id: 'dashboard', name: 'Private Launch', icon: School },
+    { id: 'public', name: 'Public Partnerships', icon: Building2 },
+    { id: 'master-timeline', name: 'Master Timeline', icon: GitMerge },
+    { id: 'timeline', name: 'Private Timeline', icon: Calendar },
     { id: 'workstreams', name: 'Workstreams', icon: Target },
     { id: 'team', name: 'Team & Tasks', icon: Users },
     { id: 'kpis', name: 'KPIs', icon: TrendingUp },
@@ -42,6 +46,10 @@ function AppContent() {
       switch(activeView) {
         case 'dashboard':
           return <Dashboard />;
+        case 'public':
+          return <PublicPartnerships />;
+        case 'master-timeline':
+          return <MasterTimeline />;
         case 'timeline':
           return <Timeline />;
         case 'workstreams':
