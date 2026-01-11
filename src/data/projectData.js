@@ -1,7 +1,7 @@
 // AI School Brazil - Launch Control Data
 // Updated: January 11, 2026 - REAL DATA
-// Location: Hotel Federal, Maua 514, Downtown São Paulo
-// Launch Date: January 15, 2027 (369 days)
+// Location: Hotel Federal, Maua 514, Downtown São Paulo (3,500m²)
+// Launch Date: February 1, 2027
 // Slogan: "A VERDADEIRA ESCOLA É A CIDADE"
 
 export const PROJECT_DATA = {
@@ -10,8 +10,13 @@ export const PROJECT_DATA = {
     name: 'AI School Brazil',
     slogan: 'A Verdadeira Escola é a Cidade',
     sloganEN: 'The Real School is the City',
-    location: 'Hotel Federal - Maua 514, Downtown São Paulo',
-    launchDate: '2027-01-15',
+    location: 'Hotel Federal - Maua 514, Downtown São Paulo (3,500m²)',
+    launchDate: '2027-02-01',
+    buildingSize: '3,500m²',
+    constructionPhases: {
+      phase1: { percentage: 70, deadline: '2027-01-15', description: 'Ready for Feb 1 opening' },
+      phase2: { percentage: 30, deadline: '2027-12-31', description: 'Complete remaining areas' }
+    },
     nearbyLandmarks: [
       'Estação da Luz',
       'Museu da Língua Portuguesa',
@@ -29,7 +34,8 @@ export const PROJECT_DATA = {
     // Core Leadership
     { id: 'raphael', name: 'Raphael Ruiz', role: 'CEO & Founder', areas: ['funding', 'strategy'], status: 'active' },
     { id: 'gabriel', name: 'Gabriel', role: 'COO - Operations & M&A', areas: ['funding', 'operations', 'construction'], status: 'active', expertise: 'Fund raising, M&A, Operations' },
-    { id: 'eduardo', name: 'Eduardo', role: 'CFO - Finance', areas: ['funding'], status: 'active' },
+    { id: 'odair', name: 'Odair Ribeiro', role: 'CFO - Finance', areas: ['funding', 'finance'], status: 'confirmed' },
+    { id: 'eduardo', name: 'Eduardo', role: 'Bridge Financing Lead', areas: ['funding'], status: 'active', note: 'Phase 1 - Bridge financing only' },
 
     // Construction & Architecture
     { id: 'ciro', name: 'Ciro Pirondi', role: 'Lead Architect', areas: ['construction'], status: 'confirmed', expertise: 'Top architect in Brazil, Government connections' },
@@ -86,7 +92,7 @@ export const PROJECT_DATA = {
           status: 'not-started',
           priority: 'critical',
           dueDate: '2026-05-15',
-          assignees: ['Gabriel', 'Eduardo'],
+          assignees: ['Gabriel', 'Leonardo'],
           progress: 0,
           description: 'R$15M innovation funding - requires guarantees',
           subtasks: [
@@ -102,7 +108,7 @@ export const PROJECT_DATA = {
           status: 'not-started',
           priority: 'critical',
           dueDate: '2026-05-15',
-          assignees: ['Gabriel', 'Eduardo'],
+          assignees: ['Gabriel', 'Leonardo'],
           progress: 0,
           description: 'R$30M CAPEX funding - requires guarantees',
           subtasks: [
@@ -230,20 +236,35 @@ export const PROJECT_DATA = {
         },
         {
           id: 'c6',
-          title: 'Construction Execution (7 months)',
+          title: 'Phase 1 Construction (70% of building)',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-10-31',
+          dueDate: '2027-01-15',
           assignees: ['Construction Company TBD', 'Gabriel'],
           progress: 0,
-          description: 'Full building renovation - April to October',
+          description: 'Core 70% ready for Feb 1, 2027 opening - 2,450m² of 3,500m²',
           milestone: true,
           subtasks: [
-            { id: 'c6.1', title: 'Phase 1: Demolition and structural work (Apr-May)', completed: false },
-            { id: 'c6.2', title: 'Phase 2: Electrical and plumbing (Jun-Jul)', completed: false },
-            { id: 'c6.3', title: 'Phase 3: Interior finishing (Aug-Sep)', completed: false },
-            { id: 'c6.4', title: 'Phase 4: Final details and cleanup (Oct)', completed: false },
-            { id: 'c6.5', title: 'Final inspection and handover', completed: false }
+            { id: 'c6.1', title: 'Demolition and structural work (Apr-Jun)', completed: false },
+            { id: 'c6.2', title: 'Electrical and plumbing (Jul-Aug)', completed: false },
+            { id: 'c6.3', title: 'Interior finishing - priority areas (Sep-Nov)', completed: false },
+            { id: 'c6.4', title: 'Final details for opening spaces (Dec-Jan)', completed: false },
+            { id: 'c6.5', title: 'Phase 1 inspection and handover', completed: false }
+          ]
+        },
+        {
+          id: 'c8',
+          title: 'Phase 2 Construction (remaining 30%)',
+          status: 'not-started',
+          priority: 'high',
+          dueDate: '2027-12-31',
+          assignees: ['Construction Company TBD', 'Gabriel'],
+          progress: 0,
+          description: 'Complete remaining 1,050m² throughout 2027 while school operates',
+          subtasks: [
+            { id: 'c8.1', title: 'Plan Phase 2 areas to minimize disruption', completed: false },
+            { id: 'c8.2', title: 'Execute remaining construction (Feb-Nov 2027)', completed: false },
+            { id: 'c8.3', title: 'Final inspection and full building handover', completed: false }
           ]
         },
         {
@@ -748,61 +769,14 @@ export const PROJECT_DATA = {
           title: 'Operational Readiness Check',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2027-01-10',
+          dueDate: '2027-01-20',
           assignees: ['Gabriel'],
           progress: 0,
           milestone: true,
-          description: 'All systems go for January 15 launch'
+          description: 'All systems go for February 1 launch'
         }
       ]
     },
-    {
-      id: 'public-sector',
-      name: 'Public Sector Strategy (2028)',
-      color: '#1E40AF', // dark blue
-      leads: ['Bruno Quick', 'Gustavo Vasconcelos'],
-      icon: 'Building2',
-      status: 'planning',
-      description: 'Year 2+ expansion into public school adoptions and management',
-      tasks: [
-        {
-          id: 'ps1',
-          title: 'Public Sector Entry Strategy',
-          status: 'not-started',
-          priority: 'medium',
-          dueDate: '2027-06-30',
-          assignees: ['Bruno Quick', 'Gustavo Vasconcelos'],
-          progress: 0,
-          description: 'Plan for 2028 public school adoptions',
-          subtasks: [
-            { id: 'ps1.1', title: 'Map public school adoption opportunities', completed: false },
-            { id: 'ps1.2', title: 'Define public sector pricing model', completed: false },
-            { id: 'ps1.3', title: 'Government relationship building', completed: false },
-            { id: 'ps1.4', title: 'Pilot program proposal', completed: false }
-          ]
-        },
-        {
-          id: 'ps2',
-          title: 'Technology Adoption Licensing Model',
-          status: 'not-started',
-          priority: 'medium',
-          dueDate: '2027-09-30',
-          assignees: ['Bruno Quick', 'Jay'],
-          progress: 0,
-          description: 'License AI platform to public schools'
-        },
-        {
-          id: 'ps3',
-          title: 'Public School Management Contracts',
-          status: 'not-started',
-          priority: 'low',
-          dueDate: '2028-03-31',
-          assignees: ['Bruno Quick', 'Gustavo Vasconcelos', 'Gabriel'],
-          progress: 0,
-          description: 'Full management of public schools'
-        }
-      ]
-    }
   ],
 
   milestones: [
@@ -814,19 +788,19 @@ export const PROJECT_DATA = {
     { id: 'm6', title: 'City Hall Incentive Approved (R$10M)', date: '2026-03-31', status: 'pending', critical: false, owner: 'Ciro Pirondi' },
     { id: 'm7', title: 'CONSTRUCTION STARTS', date: '2026-04-15', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
     { id: 'm8', title: 'Cultural Institution Partnerships Signed', date: '2026-05-31', status: 'pending', critical: false, owner: 'Whitney Boughton' },
-    { id: 'm9', title: 'Desenvolve SP Funding Approved (R$45M)', date: '2026-06-15', status: 'pending', critical: true, owner: 'Gabriel, Eduardo' },
+    { id: 'm9', title: 'Desenvolve SP Funding Approved (R$45M)', date: '2026-06-15', status: 'pending', critical: true, owner: 'Gabriel, Leonardo' },
     { id: 'm10', title: '200+ Pre-Enrollments with Deposits', date: '2026-06-30', status: 'pending', critical: true, owner: 'Marketing' },
     { id: 'm11', title: 'Bridge Loan Repaid with Interest + Equity', date: '2026-06-30', status: 'pending', critical: true, owner: 'Eduardo' },
     { id: 'm12', title: 'Technology Platform MVP Ready', date: '2026-09-30', status: 'pending', critical: true, owner: 'Jay, Bruno Almeida' },
     { id: 'm13', title: '50 AI Guides Hired', date: '2026-09-30', status: 'pending', critical: true, owner: 'Whitney, Fernanda' },
-    { id: 'm14', title: 'CONSTRUCTION COMPLETE', date: '2026-10-31', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
+    { id: 'm14', title: 'PHASE 1 CONSTRUCTION COMPLETE (70%)', date: '2027-01-15', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
     { id: 'm15', title: 'BNCC Educational License Approved', date: '2026-10-31', status: 'pending', critical: true, owner: 'Bruno Quick, Gustavo' },
     { id: 'm16', title: 'Tech Infrastructure Installed', date: '2026-11-15', status: 'pending', critical: true, owner: 'Gabriel, Jay' },
     { id: 'm17', title: 'Guide Training Complete', date: '2026-12-15', status: 'pending', critical: true, owner: 'Whitney Boughton' },
     { id: 'm18', title: '750 Students Enrolled', date: '2026-12-31', status: 'pending', critical: true, owner: 'Marketing' },
-    { id: 'm19', title: 'Operational Readiness Check', date: '2027-01-10', status: 'pending', critical: true, owner: 'Gabriel' },
-    { id: 'm20', title: 'AI SCHOOL BRAZIL OPENS!', date: '2027-01-15', status: 'pending', critical: true, owner: 'Everyone' },
-    { id: 'm21', title: 'Public Sector Pilot Launch', date: '2028-03-01', status: 'pending', critical: false, owner: 'Bruno Quick, Gustavo' }
+    { id: 'm19', title: 'Operational Readiness Check', date: '2027-01-20', status: 'pending', critical: true, owner: 'Gabriel' },
+    { id: 'm20', title: 'AI SCHOOL BRAZIL OPENS!', date: '2027-02-01', status: 'pending', critical: true, owner: 'Everyone' },
+    { id: 'm21', title: 'PHASE 2 CONSTRUCTION COMPLETE (100%)', date: '2027-12-31', status: 'pending', critical: false, owner: 'Gabriel, Construction Co' },
   ],
 
   risks: [
@@ -860,7 +834,7 @@ export const PROJECT_DATA = {
       probability: 'medium',
       impact: 'critical',
       mitigation: 'Bridge financing provides runway. Multiple credit lines in parallel.',
-      owner: 'Gabriel, Eduardo'
+      owner: 'Gabriel, Leonardo'
     },
     {
       id: 'risk5',
@@ -908,12 +882,12 @@ export const PROJECT_DATA = {
     { id: 'kpi1', name: 'Bridge Financing Raised', current: 0, target: 2000000, unit: 'USD', description: 'Private capital before June 2026' },
     { id: 'kpi2', name: 'Government Funding Secured', current: 0, target: 55000000, unit: 'R$', description: 'Desenvolve SP (R$45M) + City Hall (R$10M)' },
     { id: 'kpi3', name: 'Pre-Enrollments', current: 0, target: 200, unit: 'families', description: 'Deposits collected before construction complete' },
-    { id: 'kpi4', name: 'Year 1 Students Enrolled', current: 0, target: 750, unit: 'students', description: 'Full enrollment for January 2027 launch' },
+    { id: 'kpi4', name: 'Year 1 Students Enrolled', current: 0, target: 750, unit: 'students', description: 'Full enrollment for February 2027 launch' },
     { id: 'kpi5', name: 'AI Guides Hired', current: 0, target: 50, unit: 'guides', description: 'DNA-aligned guides hired and trained' },
-    { id: 'kpi6', name: 'Construction Progress', current: 0, target: 100, unit: '%', description: 'Hotel Federal renovation' },
+    { id: 'kpi6', name: 'Phase 1 Construction Progress', current: 0, target: 70, unit: '%', description: 'Hotel Federal - 70% (2,450m²) ready for Feb 2027 opening' },
     { id: 'kpi7', name: 'Platform Development', current: 20, target: 100, unit: '%', description: 'AI tutoring + BNCC integration' },
     { id: 'kpi8', name: 'Cultural Partnerships', current: 0, target: 7, unit: 'partnerships', description: 'Downtown SP institutions' },
-    { id: 'kpi9', name: 'Days to Launch', current: 369, target: 0, unit: 'days', description: 'Countdown to January 15, 2027' }
+    { id: 'kpi9', name: 'Days to Launch', current: 386, target: 0, unit: 'days', description: 'Countdown to February 1, 2027' }
   ],
 
   // Funding Summary

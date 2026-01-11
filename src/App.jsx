@@ -12,7 +12,6 @@ import Workstreams from './components/Workstreams';
 import RiskMatrix from './components/RiskMatrix';
 import TeamView from './components/TeamView';
 import KPITracker from './components/KPITracker';
-import PublicPartnerships from './components/PublicPartnerships';
 import MasterTimeline from './components/MasterTimeline';
 
 function AppContent() {
@@ -32,7 +31,6 @@ function AppContent() {
   
   const navigationItems = [
     { id: 'dashboard', name: 'Private Launch', icon: School },
-    { id: 'public', name: 'Public Partnerships', icon: Building2 },
     { id: 'master-timeline', name: 'Master Timeline', icon: GitMerge },
     { id: 'timeline', name: 'Private Timeline', icon: Calendar },
     { id: 'workstreams', name: 'Workstreams', icon: Target },
@@ -46,8 +44,6 @@ function AppContent() {
       switch(activeView) {
         case 'dashboard':
           return <Dashboard />;
-        case 'public':
-          return <PublicPartnerships />;
         case 'master-timeline':
           return <MasterTimeline />;
         case 'timeline':
@@ -120,7 +116,7 @@ function AppContent() {
         <div className="px-6 py-4 border-t border-gray-200">
           <div className="text-sm text-gray-600 mb-2">Days Until Launch</div>
           <div className="text-3xl font-bold text-blue-600">
-            {Math.ceil((new Date('2027-01-15') - new Date()) / (1000 * 60 * 60 * 24))}
+            {Math.ceil((new Date('2027-02-01') - new Date()) / (1000 * 60 * 60 * 24))}
           </div>
         </div>
       </div>
