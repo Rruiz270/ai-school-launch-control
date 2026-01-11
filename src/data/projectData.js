@@ -88,34 +88,34 @@ export const PROJECT_DATA = {
         },
         {
           id: 'f2',
-          title: 'Desenvolve SP - Innovation Credit Line',
-          status: 'not-started',
+          title: 'Desenvolve SP - Start Application Process',
+          status: 'urgent',
           priority: 'critical',
-          dueDate: '2026-05-15',
+          dueDate: '2026-01-31',
           assignees: ['Gabriel', 'Leonardo'],
-          progress: 0,
-          description: 'R$15M innovation funding - requires guarantees',
+          progress: 5,
+          description: 'Begin paperwork end of January - R$45M total (Innovation + CAPEX)',
           subtasks: [
             { id: 'f2.1', title: 'Prepare innovation project documentation', completed: false },
-            { id: 'f2.2', title: 'Identify guarantee options', completed: false },
-            { id: 'f2.3', title: 'Submit application to Desenvolve SP', completed: false },
-            { id: 'f2.4', title: 'Follow up and approval process', completed: false }
+            { id: 'f2.2', title: 'Prepare CAPEX project documentation', completed: false },
+            { id: 'f2.3', title: 'Identify guarantee options', completed: false },
+            { id: 'f2.4', title: 'Submit applications to Desenvolve SP', completed: false }
           ]
         },
         {
           id: 'f3',
-          title: 'Desenvolve SP - CAPEX Credit Line',
+          title: 'Desenvolve SP - Funding Approved (R$45M)',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-05-15',
+          dueDate: '2026-05-31',
           assignees: ['Gabriel', 'Leonardo'],
           progress: 0,
-          description: 'R$30M CAPEX funding - requires guarantees',
+          description: 'R$15M Innovation + R$30M CAPEX - worst case June',
           subtasks: [
-            { id: 'f3.1', title: 'Prepare CAPEX project documentation', completed: false },
-            { id: 'f3.2', title: 'Construction budget and timeline', completed: false },
-            { id: 'f3.3', title: 'Submit application', completed: false },
-            { id: 'f3.4', title: 'Approval and disbursement', completed: false }
+            { id: 'f3.1', title: 'Follow up on application status', completed: false },
+            { id: 'f3.2', title: 'Provide additional documentation if needed', completed: false },
+            { id: 'f3.3', title: 'Final approval', completed: false },
+            { id: 'f3.4', title: 'First disbursement received', completed: false }
           ]
         },
         {
@@ -228,10 +228,10 @@ export const PROJECT_DATA = {
           title: 'Construction START',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-04-15',
+          dueDate: '2026-03-01',
           assignees: ['Construction Company TBD', 'Gabriel'],
           progress: 0,
-          description: 'Break ground - 7 months to complete',
+          description: 'Break ground early March - every day counts for Feb 2027 opening',
           milestone: true
         },
         {
@@ -786,9 +786,9 @@ export const PROJECT_DATA = {
     { id: 'm4', title: 'Architect Project Complete (Ciro Pirondi)', date: '2026-02-28', status: 'pending', critical: true, owner: 'Ciro Pirondi' },
     { id: 'm5', title: 'All Permits Approved', date: '2026-03-31', status: 'pending', critical: true, owner: 'Ciro Pirondi, Leonardo' },
     { id: 'm6', title: 'City Hall Incentive Approved (R$10M)', date: '2026-03-31', status: 'pending', critical: false, owner: 'Ciro Pirondi' },
-    { id: 'm7', title: 'CONSTRUCTION STARTS', date: '2026-04-15', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
+    { id: 'm7', title: 'CONSTRUCTION STARTS', date: '2026-03-01', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
     { id: 'm8', title: 'Cultural Institution Partnerships Signed', date: '2026-05-31', status: 'pending', critical: false, owner: 'Whitney Boughton' },
-    { id: 'm9', title: 'Desenvolve SP Funding Approved (R$45M)', date: '2026-06-15', status: 'pending', critical: true, owner: 'Gabriel, Leonardo' },
+    { id: 'm9', title: 'Desenvolve SP Funding Approved (R$45M)', date: '2026-05-31', status: 'pending', critical: true, owner: 'Gabriel, Leonardo' },
     { id: 'm10', title: '200+ Pre-Enrollments with Deposits', date: '2026-06-30', status: 'pending', critical: true, owner: 'Marketing' },
     { id: 'm11', title: 'Bridge Loan Repaid with Interest + Equity', date: '2026-06-30', status: 'pending', critical: true, owner: 'Eduardo' },
     { id: 'm12', title: 'Technology Platform MVP Ready', date: '2026-09-30', status: 'pending', critical: true, owner: 'Jay, Bruno Almeida' },

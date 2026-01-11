@@ -53,6 +53,24 @@ const MasterTimeline = () => {
             description: 'Full renovation project for historic building - FAST TRACK'
           },
           {
+            id: 'desenvolve-sp-start',
+            title: 'Desenvolve SP - Start Application',
+            category: 'funding',
+            status: 'urgent',
+            critical: true,
+            date: 'Jan 31',
+            description: 'Begin paperwork for R$45M (Innovation + CAPEX) - every day counts'
+          },
+          {
+            id: 'construction-start',
+            title: 'CONSTRUCTION STARTS',
+            category: 'construction',
+            status: 'pending',
+            critical: true,
+            date: 'Mar 1',
+            description: 'Break ground early March - 11 months to Feb 2027 opening'
+          },
+          {
             id: 'permits-approved',
             title: 'All Permits Approved',
             category: 'regulatory',
@@ -73,22 +91,13 @@ const MasterTimeline = () => {
         ],
         Q2: [
           {
-            id: 'construction-start',
-            title: 'CONSTRUCTION STARTS',
-            category: 'construction',
-            status: 'pending',
-            critical: true,
-            date: 'Apr 15',
-            description: 'Break ground on Hotel Federal renovation - phased approach begins'
-          },
-          {
-            id: 'desenvolve-sp',
+            id: 'desenvolve-sp-approved',
             title: 'Desenvolve SP Funding Approved (R$45M)',
             category: 'funding',
             status: 'pending',
             critical: true,
-            date: 'Jun 15',
-            description: 'R$15M Innovation + R$30M CAPEX credit lines'
+            date: 'May 31',
+            description: 'R$15M Innovation + R$30M CAPEX - worst case June'
           },
           {
             id: 'pre-enrollments',
@@ -635,10 +644,11 @@ const MasterTimeline = () => {
               <div className="border-l-4 border-blue-500 pl-4">
                 <div className="font-medium text-blue-900">Phase 1: Foundation (2026)</div>
                 <ul className="text-sm text-blue-800 mt-2 space-y-1">
-                  <li>• Bridge financing ($2M) - Jan</li>
-                  <li>• Building contract & permits - Q1</li>
-                  <li>• Construction starts - Apr 15</li>
-                  <li>• Government funding (R$45M) - Jun</li>
+                  <li>• Bridge financing ($2M) - Jan 31</li>
+                  <li>• Desenvolve SP application - Jan 31</li>
+                  <li>• <strong>Construction starts - Mar 1</strong></li>
+                  <li>• Permits approved - Mar 31</li>
+                  <li>• Government funding (R$45M) - May/Jun</li>
                   <li>• Platform MVP ready - Sep</li>
                   <li>• 750 enrollments - Dec</li>
                 </ul>
