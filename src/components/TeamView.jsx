@@ -21,27 +21,34 @@ const TeamView = () => {
   // Get unique assignees and their tasks
   const getTeamMembers = () => {
     const members = {};
-    
+
     projectData.workstreams.forEach(workstream => {
       workstream.tasks.forEach(task => {
-        if (!members[task.assignee]) {
-          members[task.assignee] = {
-            name: task.assignee,
-            role: task.assignee.includes('TBH') || task.assignee.includes('TBD') ? 'To Be Hired' : 'Team Member',
-            tasks: [],
-            workstreams: new Set()
-          };
-        }
-        members[task.assignee].tasks.push({
-          ...task,
-          workstreamId: workstream.id,
-          workstreamName: workstream.name,
-          workstreamColor: workstream.color
+        // Handle both assignees (array) and assignee (string) formats
+        const taskAssignees = task.assignees || (task.assignee ? [task.assignee] : ['Unassigned']);
+
+        taskAssignees.forEach(assignee => {
+          if (!assignee) return;
+
+          if (!members[assignee]) {
+            members[assignee] = {
+              name: assignee,
+              role: (assignee.includes('TBH') || assignee.includes('TBD')) ? 'To Be Hired' : 'Team Member',
+              tasks: [],
+              workstreams: new Set()
+            };
+          }
+          members[assignee].tasks.push({
+            ...task,
+            workstreamId: workstream.id,
+            workstreamName: workstream.name,
+            workstreamColor: workstream.color
+          });
+          members[assignee].workstreams.add(workstream.name);
         });
-        members[task.assignee].workstreams.add(workstream.name);
       });
     });
-    
+
     return Object.values(members);
   };
 
@@ -70,6 +77,12 @@ const TeamView = () => {
     return colors[status] || 'bg-gray-100 text-gray-700';
   };
 
+  // Helper to check if name indicates TBD/TBH
+  const isToBeHired = (name) => {
+    if (!name) return false;
+    return name.includes('TBH') || name.includes('TBD');
+  };
+
   return (
     <div className="space-y-6">
       {/* Team Overview */}
@@ -78,13 +91,13 @@ const TeamView = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="text-center">
             <div className="text-3xl font-bold text-gray-900">
-              {teamMembers.filter(m => !m.name.includes('TBH') && !m.name.includes('TBD')).length}
+              {teamMembers.filter(m => !isToBeHired(m.name)).length}
             </div>
             <div className="text-sm text-gray-600">Current Team</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-orange-600">
-              {teamMembers.filter(m => m.name.includes('TBH') || m.name.includes('TBD')).length}
+              {teamMembers.filter(m => isToBeHired(m.name)).length}
             </div>
             <div className="text-sm text-gray-600">To Be Hired</div>
           </div>
@@ -96,7 +109,7 @@ const TeamView = () => {
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-green-600">
-              {teamMembers.reduce((sum, member) => 
+              {teamMembers.reduce((sum, member) =>
                 sum + member.tasks.filter(t => t.status === 'completed').length, 0
               )}
             </div>
@@ -111,18 +124,18 @@ const TeamView = () => {
           const completedTasks = member.tasks.filter(t => t.status === 'completed').length;
           const urgentTasks = member.tasks.filter(t => t.status === 'urgent').length;
           const inProgressTasks = member.tasks.filter(t => t.status === 'in-progress').length;
-          const isToBeHired = member.name.includes('TBH') || member.name.includes('TBD');
+          const isTBH = isToBeHired(member.name);
 
           return (
             <div key={index} className="bg-white rounded-lg shadow overflow-hidden">
               {/* Member Header */}
-              <div className={`p-6 ${isToBeHired ? 'bg-orange-50' : 'bg-blue-50'}`}>
+              <div className={`p-6 ${isTBH ? 'bg-orange-50' : 'bg-blue-50'}`}>
                 <div className="flex items-center space-x-4">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                    isToBeHired ? 'bg-orange-200' : 'bg-blue-200'
+                    isTBH ? 'bg-orange-200' : 'bg-blue-200'
                   }`}>
                     <User className={`w-6 h-6 ${
-                      isToBeHired ? 'text-orange-600' : 'text-blue-600'
+                      isTBH ? 'text-orange-600' : 'text-blue-600'
                     }`} />
                   </div>
                   <div>
@@ -165,8 +178,8 @@ const TeamView = () => {
                 <div className="space-y-2">
                   <h5 className="font-medium text-gray-900 text-sm">Recent Tasks</h5>
                   {member.tasks.slice(0, 4).map((task) => (
-                    <div 
-                      key={task.id} 
+                    <div
+                      key={task.id}
                       className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0 cursor-pointer hover:bg-gray-50 transition-colors rounded px-2"
                       onClick={() => handleTaskClick(task)}
                     >
@@ -182,7 +195,7 @@ const TeamView = () => {
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div 
+                        <div
                           className="w-2 h-2 rounded-full"
                           style={{ backgroundColor: task.workstreamColor }}
                         />
@@ -208,10 +221,10 @@ const TeamView = () => {
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
+                    <div
                       className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                      style={{ 
-                        width: `${member.tasks.length > 0 ? (completedTasks / member.tasks.length) * 100 : 0}%` 
+                      style={{
+                        width: `${member.tasks.length > 0 ? (completedTasks / member.tasks.length) * 100 : 0}%`
                       }}
                     />
                   </div>
