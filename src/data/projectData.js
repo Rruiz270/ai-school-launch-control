@@ -40,7 +40,7 @@ export const PROJECT_DATA = {
     // Technology - Harvard Team + Bruno
     { id: 'jay', name: 'Jay', role: 'Tech Lead - Harvard', areas: ['technology'], status: 'confirmed', equity: true },
     { id: 'ethan', name: 'Ethan', role: 'Developer - Harvard', areas: ['technology'], status: 'confirmed', equity: true },
-    { id: 'camila', name: 'Camila', role: 'Developer - Harvard', areas: ['technology'], status: 'confirmed', equity: true },
+    { id: 'camilo', name: 'Camilo', role: 'Developer - Harvard', areas: ['technology'], status: 'confirmed', equity: true },
     { id: 'bruno-almeida', name: 'Bruno Almeida', role: 'Developer & Partner', areas: ['technology'], status: 'confirmed', equity: true, proLabore: true },
 
     // Education & Life Skills
@@ -171,16 +171,16 @@ export const PROJECT_DATA = {
           title: 'Architectural Project by Ciro Pirondi',
           status: 'in-progress',
           priority: 'critical',
-          dueDate: '2026-03-15',
+          dueDate: '2026-02-28',
           assignees: ['Ciro Pirondi'],
           progress: 20,
-          description: 'Full renovation project for historic building',
+          description: 'Full renovation project for historic building - FAST TRACK',
           subtasks: [
             { id: 'c2.1', title: 'Site analysis and measurements', completed: true },
             { id: 'c2.2', title: 'Concept design', completed: false },
             { id: 'c2.3', title: 'Detailed architectural plans', completed: false },
             { id: 'c2.4', title: 'Historic preservation compliance', completed: false },
-            { id: 'c2.5', title: 'Submit for approval', completed: false }
+            { id: 'c2.5', title: 'Submit for permit approval', completed: false }
           ]
         },
         {
@@ -188,7 +188,7 @@ export const PROJECT_DATA = {
           title: 'Select Construction Company',
           status: 'in-progress',
           priority: 'critical',
-          dueDate: '2026-02-28',
+          dueDate: '2026-02-15',
           assignees: ['Gabriel', 'Ciro Pirondi'],
           progress: 15,
           description: 'Evaluate 3 companies: Guilherme, Ricardo contact, Ciro contact',
@@ -205,10 +205,10 @@ export const PROJECT_DATA = {
           title: 'Government Licensing & Permits',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-04-30',
+          dueDate: '2026-03-31',
           assignees: ['Ciro Pirondi', 'Leonardo'],
           progress: 0,
-          description: 'All permits via Ciro government connections',
+          description: 'All permits via Ciro government connections - EXPEDITED',
           subtasks: [
             { id: 'c4.1', title: 'Historic building renovation permit', completed: false },
             { id: 'c4.2', title: 'Fire safety certification', completed: false },
@@ -219,28 +219,39 @@ export const PROJECT_DATA = {
         },
         {
           id: 'c5',
-          title: 'Construction Execution',
+          title: 'Construction START',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-11-30',
+          dueDate: '2026-04-15',
           assignees: ['Construction Company TBD', 'Gabriel'],
           progress: 0,
-          description: 'Full building renovation',
-          milestone: true,
-          subtasks: [
-            { id: 'c5.1', title: 'Phase 1: Demolition and structural work', completed: false },
-            { id: 'c5.2', title: 'Phase 2: Electrical and plumbing', completed: false },
-            { id: 'c5.3', title: 'Phase 3: Interior finishing', completed: false },
-            { id: 'c5.4', title: 'Phase 4: Technology infrastructure', completed: false },
-            { id: 'c5.5', title: 'Final inspection and handover', completed: false }
-          ]
+          description: 'Break ground - 7 months to complete',
+          milestone: true
         },
         {
           id: 'c6',
+          title: 'Construction Execution (7 months)',
+          status: 'not-started',
+          priority: 'critical',
+          dueDate: '2026-10-31',
+          assignees: ['Construction Company TBD', 'Gabriel'],
+          progress: 0,
+          description: 'Full building renovation - April to October',
+          milestone: true,
+          subtasks: [
+            { id: 'c6.1', title: 'Phase 1: Demolition and structural work (Apr-May)', completed: false },
+            { id: 'c6.2', title: 'Phase 2: Electrical and plumbing (Jun-Jul)', completed: false },
+            { id: 'c6.3', title: 'Phase 3: Interior finishing (Aug-Sep)', completed: false },
+            { id: 'c6.4', title: 'Phase 4: Final details and cleanup (Oct)', completed: false },
+            { id: 'c6.5', title: 'Final inspection and handover', completed: false }
+          ]
+        },
+        {
+          id: 'c7',
           title: 'Partnerships with Government Bodies',
           status: 'not-started',
           priority: 'high',
-          dueDate: '2026-06-30',
+          dueDate: '2026-05-31',
           assignees: ['Ciro Pirondi', 'Leonardo'],
           progress: 0,
           description: 'Leverage Ciro connections for incentives and partnerships'
@@ -262,7 +273,7 @@ export const PROJECT_DATA = {
           status: 'in-progress',
           priority: 'critical',
           dueDate: '2026-02-28',
-          assignees: ['Jay', 'Ethan', 'Camila', 'Bruno Almeida'],
+          assignees: ['Jay', 'Ethan', 'Camilo', 'Bruno Almeida'],
           progress: 25,
           description: 'AI-powered 2-hour learning system architecture',
           subtasks: [
@@ -295,7 +306,7 @@ export const PROJECT_DATA = {
           status: 'not-started',
           priority: 'critical',
           dueDate: '2026-04-30',
-          assignees: ['Ethan', 'Camila'],
+          assignees: ['Ethan', 'Camilo'],
           progress: 0,
           description: 'Full Brazilian national curriculum mapped to AI system',
           subtasks: [
@@ -311,7 +322,7 @@ export const PROJECT_DATA = {
           status: 'not-started',
           priority: 'high',
           dueDate: '2026-07-31',
-          assignees: ['Bruno Almeida', 'Camila'],
+          assignees: ['Bruno Almeida', 'Camilo'],
           progress: 0,
           description: 'Operating system for parents and guides',
           subtasks: [
@@ -327,7 +338,7 @@ export const PROJECT_DATA = {
           status: 'not-started',
           priority: 'critical',
           dueDate: '2026-09-30',
-          assignees: ['Jay', 'Bruno Almeida', 'Ethan', 'Camila'],
+          assignees: ['Jay', 'Bruno Almeida', 'Ethan', 'Camilo'],
           progress: 0,
           milestone: true,
           description: 'Complete platform ready for pilot testing'
@@ -627,10 +638,10 @@ export const PROJECT_DATA = {
           title: 'Building Regulatory (Historic Preservation)',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-04-30',
+          dueDate: '2026-03-31',
           assignees: ['Ricardo', 'Ciro Pirondi', 'Leonardo'],
           progress: 0,
-          description: 'Historic building compliance and permits',
+          description: 'Historic building compliance and permits - EXPEDITED via Ciro',
           subtasks: [
             { id: 'r1.1', title: 'Historic preservation documentation', completed: false },
             { id: 'r1.2', title: 'Renovation approval from heritage dept', completed: false },
@@ -691,10 +702,10 @@ export const PROJECT_DATA = {
           title: 'Technology Infrastructure Installation',
           status: 'not-started',
           priority: 'critical',
-          dueDate: '2026-11-30',
+          dueDate: '2026-11-15',
           assignees: ['Gabriel', 'Jay'],
           progress: 0,
-          description: 'Network, devices, security systems',
+          description: 'Network, devices, security systems - After construction complete',
           subtasks: [
             { id: 'o1.1', title: 'High-speed network installation', completed: false },
             { id: 'o1.2', title: 'Computer lab and device setup', completed: false },
@@ -795,24 +806,27 @@ export const PROJECT_DATA = {
   ],
 
   milestones: [
-    { id: 'm1', title: 'Private Bridge Financing Closed ($2M)', date: '2026-01-31', status: 'pending', critical: true, owner: 'Raphael, Gabriel, Eduardo' },
-    { id: 'm2', title: 'Building Contract Signed (Hotel Federal)', date: '2026-01-20', status: 'pending', critical: true, owner: 'Raphael, Gabriel' },
-    { id: 'm3', title: 'Architect Project Complete (Ciro Pirondi)', date: '2026-03-15', status: 'pending', critical: true, owner: 'Ciro Pirondi' },
-    { id: 'm4', title: 'Construction Company Selected', date: '2026-02-28', status: 'pending', critical: true, owner: 'Gabriel' },
-    { id: 'm5', title: 'All Permits Approved', date: '2026-04-30', status: 'pending', critical: true, owner: 'Ciro Pirondi, Leonardo' },
-    { id: 'm6', title: 'Desenvolve SP Funding Approved (R$45M)', date: '2026-06-15', status: 'pending', critical: true, owner: 'Gabriel, Eduardo' },
-    { id: 'm7', title: 'City Hall Incentive Approved (R$10M)', date: '2026-03-31', status: 'pending', critical: false, owner: 'Ciro Pirondi' },
-    { id: 'm8', title: 'Bridge Loan Repaid with Interest + Equity', date: '2026-06-30', status: 'pending', critical: true, owner: 'Eduardo' },
-    { id: 'm9', title: 'Technology Platform MVP Ready', date: '2026-09-30', status: 'pending', critical: true, owner: 'Jay, Bruno Almeida' },
-    { id: 'm10', title: 'Cultural Institution Partnerships Signed', date: '2026-05-31', status: 'pending', critical: false, owner: 'Whitney Boughton' },
-    { id: 'm11', title: '200+ Pre-Enrollments with Deposits', date: '2026-06-30', status: 'pending', critical: true, owner: 'Marketing' },
-    { id: 'm12', title: 'BNCC Educational License Approved', date: '2026-10-31', status: 'pending', critical: true, owner: 'Bruno Quick, Gustavo' },
+    { id: 'm1', title: 'Building Contract Signed (Hotel Federal)', date: '2026-01-17', status: 'pending', critical: true, owner: 'Raphael, Gabriel' },
+    { id: 'm2', title: 'Private Bridge Financing Closed ($2M)', date: '2026-01-31', status: 'pending', critical: true, owner: 'Raphael, Gabriel, Eduardo' },
+    { id: 'm3', title: 'Construction Company Selected', date: '2026-02-15', status: 'pending', critical: true, owner: 'Gabriel' },
+    { id: 'm4', title: 'Architect Project Complete (Ciro Pirondi)', date: '2026-02-28', status: 'pending', critical: true, owner: 'Ciro Pirondi' },
+    { id: 'm5', title: 'All Permits Approved', date: '2026-03-31', status: 'pending', critical: true, owner: 'Ciro Pirondi, Leonardo' },
+    { id: 'm6', title: 'City Hall Incentive Approved (R$10M)', date: '2026-03-31', status: 'pending', critical: false, owner: 'Ciro Pirondi' },
+    { id: 'm7', title: 'CONSTRUCTION STARTS', date: '2026-04-15', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
+    { id: 'm8', title: 'Cultural Institution Partnerships Signed', date: '2026-05-31', status: 'pending', critical: false, owner: 'Whitney Boughton' },
+    { id: 'm9', title: 'Desenvolve SP Funding Approved (R$45M)', date: '2026-06-15', status: 'pending', critical: true, owner: 'Gabriel, Eduardo' },
+    { id: 'm10', title: '200+ Pre-Enrollments with Deposits', date: '2026-06-30', status: 'pending', critical: true, owner: 'Marketing' },
+    { id: 'm11', title: 'Bridge Loan Repaid with Interest + Equity', date: '2026-06-30', status: 'pending', critical: true, owner: 'Eduardo' },
+    { id: 'm12', title: 'Technology Platform MVP Ready', date: '2026-09-30', status: 'pending', critical: true, owner: 'Jay, Bruno Almeida' },
     { id: 'm13', title: '50 AI Guides Hired', date: '2026-09-30', status: 'pending', critical: true, owner: 'Whitney, Fernanda' },
-    { id: 'm14', title: 'Construction Complete', date: '2026-11-30', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
-    { id: 'm15', title: 'Guide Training Complete', date: '2026-12-15', status: 'pending', critical: true, owner: 'Whitney Boughton' },
-    { id: 'm16', title: '750 Students Enrolled', date: '2026-12-31', status: 'pending', critical: true, owner: 'Marketing' },
-    { id: 'm17', title: 'AI SCHOOL BRAZIL OPENS!', date: '2027-01-15', status: 'pending', critical: true, owner: 'Everyone' },
-    { id: 'm18', title: 'Public Sector Pilot Launch', date: '2028-03-01', status: 'pending', critical: false, owner: 'Bruno Quick, Gustavo' }
+    { id: 'm14', title: 'CONSTRUCTION COMPLETE', date: '2026-10-31', status: 'pending', critical: true, owner: 'Gabriel, Construction Co' },
+    { id: 'm15', title: 'BNCC Educational License Approved', date: '2026-10-31', status: 'pending', critical: true, owner: 'Bruno Quick, Gustavo' },
+    { id: 'm16', title: 'Tech Infrastructure Installed', date: '2026-11-15', status: 'pending', critical: true, owner: 'Gabriel, Jay' },
+    { id: 'm17', title: 'Guide Training Complete', date: '2026-12-15', status: 'pending', critical: true, owner: 'Whitney Boughton' },
+    { id: 'm18', title: '750 Students Enrolled', date: '2026-12-31', status: 'pending', critical: true, owner: 'Marketing' },
+    { id: 'm19', title: 'Operational Readiness Check', date: '2027-01-10', status: 'pending', critical: true, owner: 'Gabriel' },
+    { id: 'm20', title: 'AI SCHOOL BRAZIL OPENS!', date: '2027-01-15', status: 'pending', critical: true, owner: 'Everyone' },
+    { id: 'm21', title: 'Public Sector Pilot Launch', date: '2028-03-01', status: 'pending', critical: false, owner: 'Bruno Quick, Gustavo' }
   ],
 
   risks: [
