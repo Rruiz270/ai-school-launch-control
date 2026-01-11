@@ -1,265 +1,346 @@
 import React, { useState } from 'react';
-import { 
-  Calendar, Clock, CheckCircle, AlertCircle, 
-  School, Building2, GitMerge, Filter, 
-  Users, TrendingUp, Target 
+import {
+  Calendar, Clock, CheckCircle, AlertCircle,
+  School, Building2, GitMerge, Filter,
+  Users, TrendingUp, Target, DollarSign,
+  Laptop, GraduationCap
 } from 'lucide-react';
 import { useProject } from '../context/ProjectContext';
 
 const MasterTimeline = () => {
   const { projectData } = useProject();
-  const [filterSector, setFilterSector] = useState('all'); // all, private, public
-  const [selectedYear, setSelectedYear] = useState('2025');
+  const [selectedYear, setSelectedYear] = useState('2026');
 
-  // Combined timeline data - integrating private and public sector milestones
+  // Real timeline data based on project milestones
   const masterTimelineData = {
-    2025: {
-      quarter: {
-        Q3: [
-          {
-            id: 'funding-close',
-            title: 'Series A Funding Secured (R$20M)',
-            sector: 'private',
-            status: 'pending',
-            critical: true,
-            description: 'Close Series A for flagship school, technology development, and public sector pilot preparation'
-          },
-          {
-            id: 'architect-selection',
-            title: 'Architect Selection Complete',
-            sector: 'private',
-            status: 'in-progress',
-            critical: false,
-            description: 'Select architecture firm for flagship school construction'
-          }
-        ],
-        Q4: [
-          {
-            id: 'construction-start',
-            title: 'Flagship School Construction Begins',
-            sector: 'private',
-            status: 'pending',
-            critical: true,
-            description: 'Begin renovation of government building in São Paulo/Rio'
-          },
-          {
-            id: 'sp-partnership-negotiation',
-            title: 'São Paulo Partnership Negotiations',
-            sector: 'public',
-            status: 'in-progress',
-            critical: true,
-            description: 'Formal negotiations with São Paulo municipal education department'
-          },
-          {
-            id: 'team-scaling',
-            title: 'Core Team Assembly Complete',
-            sector: 'private',
-            status: 'pending',
-            critical: true,
-            description: 'Harvard team + Head of School + core leadership'
-          }
-        ]
-      },
-      students: { private: 0, public: 0 },
-      revenue: { private: 0, public: 0 }
-    },
-
     2026: {
       quarter: {
         Q1: [
           {
-            id: 'platform-mvp',
-            title: 'INCEPT Platform MVP Complete',
-            sector: 'private',
+            id: 'building-contract',
+            title: 'Building Contract Signed (Hotel Federal)',
+            category: 'construction',
             status: 'pending',
             critical: true,
-            description: 'Core AI tutoring system ready for testing'
+            date: 'Jan 17',
+            description: 'Sign contract for Hotel Federal - Maua 514, Downtown São Paulo (3,500m²)'
+          },
+          {
+            id: 'bridge-financing',
+            title: 'Private Bridge Financing Closed ($2M)',
+            category: 'funding',
+            status: 'pending',
+            critical: true,
+            date: 'Jan 31',
+            description: 'Hybrid model: Interest (1.5%/mo) + Kicker (5%) + Equity warrants'
+          },
+          {
+            id: 'construction-company',
+            title: 'Construction Company Selected',
+            category: 'construction',
+            status: 'pending',
+            critical: true,
+            date: 'Feb 15',
+            description: 'Evaluate 3 companies: Guilherme, Ricardo contact, Ciro contact'
+          },
+          {
+            id: 'architect-complete',
+            title: 'Architect Project Complete (Ciro Pirondi)',
+            category: 'construction',
+            status: 'pending',
+            critical: true,
+            date: 'Feb 28',
+            description: 'Full renovation project for historic building - FAST TRACK'
+          },
+          {
+            id: 'permits-approved',
+            title: 'All Permits Approved',
+            category: 'regulatory',
+            status: 'pending',
+            critical: true,
+            date: 'Mar 31',
+            description: 'Historic building permits via Ciro Pirondi government connections'
+          },
+          {
+            id: 'city-hall-incentive',
+            title: 'City Hall Incentive Approved (R$10M)',
+            category: 'funding',
+            status: 'pending',
+            critical: false,
+            date: 'Mar 31',
+            description: '25% of CAPEX for historic building renovation'
           }
         ],
         Q2: [
           {
-            id: 'timeback-system',
-            title: 'TIMEBACK Operating System Live',
-            sector: 'private',
+            id: 'construction-start',
+            title: 'CONSTRUCTION STARTS',
+            category: 'construction',
             status: 'pending',
             critical: true,
-            description: 'Parent/guide portals and monitoring system operational'
+            date: 'Apr 15',
+            description: 'Break ground on Hotel Federal renovation - phased approach begins'
           },
           {
-            id: 'rio-pilot-agreement',
-            title: 'Rio de Janeiro Pilot Agreement Signed',
-            sector: 'public',
+            id: 'desenvolve-sp',
+            title: 'Desenvolve SP Funding Approved (R$45M)',
+            category: 'funding',
             status: 'pending',
             critical: true,
-            description: '150K student pilot program with SME Rio'
+            date: 'Jun 15',
+            description: 'R$15M Innovation + R$30M CAPEX credit lines'
+          },
+          {
+            id: 'pre-enrollments',
+            title: '200+ Pre-Enrollments with Deposits',
+            category: 'marketing',
+            status: 'pending',
+            critical: true,
+            date: 'Jun 30',
+            description: 'Target families with R$1,000+ deposits'
+          },
+          {
+            id: 'bridge-repaid',
+            title: 'Bridge Loan Repaid with Interest + Equity',
+            category: 'funding',
+            status: 'pending',
+            critical: true,
+            date: 'Jun 30',
+            description: 'Pay back private investors when government funds arrive'
+          },
+          {
+            id: 'cultural-partnerships',
+            title: 'Cultural Institution Partnerships Signed',
+            category: 'education',
+            status: 'pending',
+            critical: false,
+            date: 'May 31',
+            description: '"A Verdadeira Escola é a Cidade" - 7 downtown SP partners'
           }
         ],
         Q3: [
           {
-            id: 'campus-tours',
-            title: 'Flagship Campus Tours Begin',
-            sector: 'private',
+            id: 'platform-mvp',
+            title: 'Technology Platform MVP Ready',
+            category: 'technology',
             status: 'pending',
             critical: true,
-            description: 'Marketing launch for 750 student enrollment target'
+            date: 'Sep 30',
+            description: 'INCEPT AI tutoring + BNCC integration complete'
+          },
+          {
+            id: 'guides-hired',
+            title: '50 AI Guides Hired',
+            category: 'people',
+            status: 'pending',
+            critical: true,
+            date: 'Sep 30',
+            description: 'DNA-aligned guides hired - sports/performance backgrounds'
           }
         ],
         Q4: [
           {
-            id: 'construction-complete',
-            title: 'Flagship School Construction Complete',
-            sector: 'private',
+            id: 'bncc-license',
+            title: 'BNCC Educational License Approved',
+            category: 'regulatory',
             status: 'pending',
             critical: true,
-            description: 'School ready for January 2027 launch'
+            date: 'Oct 31',
+            description: 'Ministry of Education approval to operate K-12'
           },
           {
-            id: 'enrollment-target',
-            title: '750 Students Enrolled (Year 1)',
-            sector: 'private',
+            id: 'tech-infrastructure',
+            title: 'Tech Infrastructure Installed',
+            category: 'technology',
             status: 'pending',
             critical: true,
-            description: 'Full enrollment for flagship school Year 1'
+            date: 'Nov 15',
+            description: 'Network, devices, security systems in place'
+          },
+          {
+            id: 'guide-training',
+            title: 'Guide Training Complete',
+            category: 'people',
+            status: 'pending',
+            critical: true,
+            date: 'Dec 15',
+            description: 'All 50 guides trained on AI platform and life skills'
+          },
+          {
+            id: 'enrollment-750',
+            title: '750 Students Enrolled',
+            category: 'marketing',
+            status: 'pending',
+            critical: true,
+            date: 'Dec 31',
+            description: 'Full Year 1 enrollment at R$2,500/month'
           }
         ]
       },
-      students: { private: 750, public: 0 },
-      revenue: { private: 18000000, public: 0 }
+      metrics: {
+        funding: { bridge: 2000000, government: 55000000, currency: 'R$' },
+        students: { target: 750, enrolled: 0 },
+        construction: { phase1: 70, phase2: 30 }
+      }
     },
 
     2027: {
       quarter: {
         Q1: [
           {
-            id: 'flagship-launch',
-            title: 'AI School Brazil Opens!',
-            sector: 'private',
+            id: 'phase1-complete',
+            title: 'PHASE 1 CONSTRUCTION COMPLETE (70%)',
+            category: 'construction',
             status: 'pending',
             critical: true,
-            description: 'Flagship school operational with 2x learning in 2 hours model'
+            date: 'Jan 15',
+            description: '2,450m² of 3,500m² ready for opening'
           },
           {
-            id: 'sp-pilot-start',
-            title: 'São Paulo Public Pilot Begins',
-            sector: 'public',
+            id: 'operational-readiness',
+            title: 'Operational Readiness Check',
+            category: 'operations',
             status: 'pending',
             critical: true,
-            description: '50K students across 40 schools pilot program'
+            date: 'Jan 20',
+            description: 'All systems go for February 1 launch'
+          },
+          {
+            id: 'school-opens',
+            title: 'AI SCHOOL BRAZIL OPENS!',
+            category: 'milestone',
+            status: 'pending',
+            critical: true,
+            date: 'Feb 1',
+            description: 'Flagship school operational - 2x learning in 2 hours model'
           }
         ],
         Q2: [
           {
             id: 'first-results',
             title: 'First Learning Outcome Results',
-            sector: 'private',
+            category: 'education',
             status: 'pending',
             critical: false,
+            date: 'Apr',
             description: 'Demonstrate 2x learning speed with Brazilian students'
+          },
+          {
+            id: 'phase2-progress',
+            title: 'Phase 2 Construction Progress',
+            category: 'construction',
+            status: 'pending',
+            critical: false,
+            date: 'Jun',
+            description: 'Continue remaining 30% while school operates'
           }
         ],
         Q3: [
           {
-            id: 'franchise-program',
-            title: 'Franchise Development Program Launch',
-            sector: 'private',
+            id: 'platform-optimization',
+            title: 'Platform Optimization Based on Feedback',
+            category: 'technology',
             status: 'pending',
             critical: false,
-            description: 'Begin scaling to additional cities'
+            date: 'Sep',
+            description: 'Improve AI tutoring based on real student data'
           }
         ],
         Q4: [
           {
-            id: 'year2-enrollment',
-            title: '1,500 Students (Year 2 Target)',
-            sector: 'private',
+            id: 'phase2-complete',
+            title: 'PHASE 2 CONSTRUCTION COMPLETE (100%)',
+            category: 'construction',
             status: 'pending',
             critical: false,
-            description: 'Flagship school at full capacity'
+            date: 'Dec 31',
+            description: 'Full 3,500m² building complete'
           },
           {
-            id: 'adoption-licensing',
-            title: 'Technology Adoption Model Launch',
-            sector: 'public',
+            id: 'year2-enrollment',
+            title: 'Year 2 Enrollment Target Set',
+            category: 'marketing',
             status: 'pending',
-            critical: true,
-            description: '25K students through existing private school licensing'
+            critical: false,
+            date: 'Dec',
+            description: 'Plan for 1,500 students in Year 2'
           }
         ]
       },
-      students: { private: 33250, public: 50000 },
-      revenue: { private: 178750000, public: 150000000 }
+      metrics: {
+        students: { target: 750, enrolled: 750 },
+        revenue: 22500000,
+        construction: { phase1: 100, phase2: 100 }
+      }
     },
 
     2028: {
       quarter: {
         Q1: [
           {
-            id: 'rio-pilot-results',
-            title: 'Rio Pilot Results & Expansion Decision',
-            sector: 'public',
+            id: 'year1-review',
+            title: 'Year 1 Performance Review',
+            category: 'operations',
             status: 'pending',
-            critical: true,
-            description: 'Evaluate pilot success and approve full rollout'
+            critical: false,
+            date: 'Jan',
+            description: 'Analyze first year outcomes and student satisfaction'
           }
         ],
         Q2: [
           {
-            id: 'regional-expansion',
-            title: 'Regional Expansion (5 Cities)',
-            sector: 'public',
+            id: 'expansion-planning',
+            title: 'Expansion Planning Begins',
+            category: 'strategy',
             status: 'pending',
             critical: false,
-            description: 'Expand to Curitiba (PR), Florianópolis (SC), Belo Horizonte'
+            date: 'Apr',
+            description: 'Evaluate franchise or second campus options'
           }
         ],
         Q3: [
           {
-            id: 'franchise-milestone',
-            title: '10 Franchise Schools Operational',
-            sector: 'private',
+            id: 'year2-full-capacity',
+            title: '1,500 Students (Full Capacity)',
+            category: 'marketing',
             status: 'pending',
-            critical: false,
-            description: 'Franchise model validation and scaling'
+            critical: true,
+            date: 'Aug',
+            description: 'Flagship school at maximum enrollment'
           }
         ],
         Q4: [
           {
-            id: 'public-100k',
-            title: '100K Public Sector Students',
-            sector: 'public',
+            id: 'series-a-prep',
+            title: 'Series A Preparation',
+            category: 'funding',
             status: 'pending',
-            critical: true,
-            description: 'Major milestone in public sector scaling'
+            critical: false,
+            date: 'Dec',
+            description: 'Prepare for growth capital raise'
           }
         ]
       },
-      students: { private: 66500, public: 100000 },
-      revenue: { private: 327550000, public: 300000000 }
-    },
+      metrics: {
+        students: { target: 1500, enrolled: 0 },
+        revenue: 45000000
+      }
+    }
+  };
 
-    2030: {
-      quarter: {
-        Q4: [
-          {
-            id: 'public-dominance',
-            title: 'Public Sector Becomes Largest Revenue Stream',
-            sector: 'public',
-            status: 'pending',
-            critical: true,
-            description: 'Public partnerships surpass private sector revenue'
-          },
-          {
-            id: 'national-scale',
-            title: 'National Scale Achievement',
-            sector: 'consolidated',
-            status: 'pending',
-            critical: true,
-            description: '1M+ total students across Brazil'
-          }
-        ]
-      },
-      students: { private: 164000, public: 1000000 },
-      revenue: { private: 804722763, public: 3000000000 }
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case 'funding': return <DollarSign className="w-5 h-5 text-green-600" />;
+      case 'construction': return <Building2 className="w-5 h-5 text-orange-600" />;
+      case 'technology': return <Laptop className="w-5 h-5 text-blue-600" />;
+      case 'education': return <GraduationCap className="w-5 h-5 text-purple-600" />;
+      case 'people': return <Users className="w-5 h-5 text-pink-600" />;
+      case 'marketing': return <Target className="w-5 h-5 text-red-600" />;
+      case 'regulatory': return <CheckCircle className="w-5 h-5 text-gray-600" />;
+      case 'operations': return <GitMerge className="w-5 h-5 text-teal-600" />;
+      case 'strategy': return <TrendingUp className="w-5 h-5 text-indigo-600" />;
+      case 'milestone': return <School className="w-5 h-5 text-yellow-600" />;
+      default: return <Target className="w-5 h-5 text-gray-600" />;
     }
   };
 
@@ -272,20 +353,18 @@ const MasterTimeline = () => {
     }
   };
 
-  const getSectorIcon = (sector) => {
-    switch (sector) {
-      case 'private': return <School className="w-5 h-5 text-blue-600" />;
-      case 'public': return <Building2 className="w-5 h-5 text-emerald-600" />;
-      case 'consolidated': return <GitMerge className="w-5 h-5 text-purple-600" />;
-      default: return <Target className="w-5 h-5 text-gray-600" />;
-    }
-  };
-
-  const getSectorColor = (sector) => {
-    switch (sector) {
-      case 'private': return 'border-blue-200 bg-blue-50';
-      case 'public': return 'border-emerald-200 bg-emerald-50';
-      case 'consolidated': return 'border-purple-200 bg-purple-50';
+  const getCategoryColor = (category) => {
+    switch (category) {
+      case 'funding': return 'border-green-200 bg-green-50';
+      case 'construction': return 'border-orange-200 bg-orange-50';
+      case 'technology': return 'border-blue-200 bg-blue-50';
+      case 'education': return 'border-purple-200 bg-purple-50';
+      case 'people': return 'border-pink-200 bg-pink-50';
+      case 'marketing': return 'border-red-200 bg-red-50';
+      case 'regulatory': return 'border-gray-200 bg-gray-50';
+      case 'operations': return 'border-teal-200 bg-teal-50';
+      case 'strategy': return 'border-indigo-200 bg-indigo-50';
+      case 'milestone': return 'border-yellow-200 bg-yellow-50';
       default: return 'border-gray-200 bg-gray-50';
     }
   };
@@ -303,146 +382,189 @@ const MasterTimeline = () => {
     return new Intl.NumberFormat('pt-BR').format(value);
   };
 
-  const filteredYearData = (yearData) => {
-    if (filterSector === 'all') return yearData;
-    
-    const filtered = {};
-    Object.keys(yearData.quarter).forEach(quarter => {
-      filtered[quarter] = yearData.quarter[quarter].filter(milestone => 
-        filterSector === 'consolidated' ? 
-          milestone.sector === 'consolidated' : 
-          milestone.sector === filterSector
-      );
-    });
-    return { quarter: filtered, students: yearData.students, revenue: yearData.revenue };
-  };
-
   const yearData = masterTimelineData[selectedYear];
-  const displayData = yearData ? filteredYearData(yearData) : null;
+
+  // Calculate days until launch
+  const launchDate = new Date('2027-02-01');
+  const today = new Date();
+  const daysUntilLaunch = Math.ceil((launchDate - today) / (1000 * 60 * 60 * 24));
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-lg p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg p-6 text-white">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold">Master Timeline</h2>
             <p className="mt-2 opacity-90">
-              Integrated roadmap for private sector and public partnerships
+              AI School Brazil - Hotel Federal, Downtown São Paulo
+            </p>
+            <p className="text-sm opacity-75 mt-1">
+              "A Verdadeira Escola é a Cidade"
             </p>
           </div>
           <div className="text-right">
-            <div className="text-3xl font-bold">2027</div>
-            <div className="text-sm opacity-90">Launch Year</div>
+            <div className="text-4xl font-bold">{daysUntilLaunch}</div>
+            <div className="text-sm opacity-90">Days to Launch</div>
+            <div className="text-lg font-semibold mt-1">Feb 1, 2027</div>
           </div>
         </div>
       </div>
 
-      {/* Controls */}
+      {/* Year Selector */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <Filter className="w-5 h-5 text-gray-600" />
-              <span className="font-medium text-gray-700">Filter by Sector:</span>
-            </div>
+            <Calendar className="w-5 h-5 text-gray-600" />
+            <span className="font-medium text-gray-700">Select Year:</span>
             <div className="flex space-x-2">
-              {[
-                { id: 'all', name: 'All Sectors', icon: GitMerge, color: 'bg-gray-100 text-gray-700' },
-                { id: 'private', name: 'Private', icon: School, color: 'bg-blue-100 text-blue-700' },
-                { id: 'public', name: 'Public', icon: Building2, color: 'bg-emerald-100 text-emerald-700' },
-                { id: 'consolidated', name: 'Combined', icon: Target, color: 'bg-purple-100 text-purple-700' }
-              ].map((filter) => {
-                const Icon = filter.icon;
-                return (
-                  <button
-                    key={filter.id}
-                    onClick={() => setFilterSector(filter.id)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 transition-colors ${
-                      filterSector === filter.id 
-                        ? filter.color 
-                        : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span>{filter.name}</span>
-                  </button>
-                );
-              })}
+              {['2026', '2027', '2028'].map((year) => (
+                <button
+                  key={year}
+                  onClick={() => setSelectedYear(year)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedYear === year
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {year}
+                  {year === '2027' && <span className="ml-1 text-xs">(Launch)</span>}
+                </button>
+              ))}
             </div>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <span className="font-medium text-gray-700">Year:</span>
-            <select 
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2030">2030</option>
-            </select>
           </div>
         </div>
       </div>
 
-      {/* Year Overview */}
-      {displayData && (
+      {/* Year Metrics */}
+      {yearData && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Total Students ({selectedYear})</p>
-                <p className="text-2xl font-bold text-indigo-600">
-                  {formatNumber(displayData.students.private + displayData.students.public)}
-                </p>
+          {selectedYear === '2026' && (
+            <>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Bridge Financing Target</p>
+                    <p className="text-2xl font-bold text-green-600">$2M USD</p>
+                  </div>
+                  <DollarSign className="w-8 h-8 text-green-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  Due: January 31, 2026
+                </div>
               </div>
-              <Users className="w-8 h-8 text-indigo-600" />
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
-              <div className="text-blue-600">Private: {formatNumber(displayData.students.private)}</div>
-              <div className="text-emerald-600">Public: {formatNumber(displayData.students.public)}</div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Total Revenue ({selectedYear})</p>
-                <p className="text-2xl font-bold text-green-600">
-                  {formatCurrency(displayData.revenue.private + displayData.revenue.public)}
-                </p>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Government Funding</p>
+                    <p className="text-2xl font-bold text-blue-600">R$55M</p>
+                  </div>
+                  <Building2 className="w-8 h-8 text-blue-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  Desenvolve SP (R$45M) + City Hall (R$10M)
+                </div>
               </div>
-              <TrendingUp className="w-8 h-8 text-green-600" />
-            </div>
-            <div className="mt-4 grid grid-cols-1 gap-1 text-xs">
-              <div className="text-blue-600">Private: {formatCurrency(displayData.revenue.private)}</div>
-              <div className="text-emerald-600">Public: {formatCurrency(displayData.revenue.public)}</div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">Active Milestones</p>
-                <p className="text-2xl font-bold text-purple-600">
-                  {Object.values(displayData.quarter).flat().length}
-                </p>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Enrollment Target</p>
+                    <p className="text-2xl font-bold text-purple-600">750 Students</p>
+                  </div>
+                  <Users className="w-8 h-8 text-purple-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  Year 1 @ R$2,500/month
+                </div>
               </div>
-              <Calendar className="w-8 h-8 text-purple-600" />
-            </div>
-            <div className="mt-4 text-xs text-gray-500">
-              Milestones in {selectedYear}
-            </div>
-          </div>
+            </>
+          )}
+          {selectedYear === '2027' && (
+            <>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Year 1 Revenue</p>
+                    <p className="text-2xl font-bold text-green-600">{formatCurrency(22500000)}</p>
+                  </div>
+                  <TrendingUp className="w-8 h-8 text-green-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  750 students x R$2,500 x 12 months
+                </div>
+              </div>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Building Completion</p>
+                    <p className="text-2xl font-bold text-orange-600">3,500m²</p>
+                  </div>
+                  <Building2 className="w-8 h-8 text-orange-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  Phase 1: 70% Jan | Phase 2: 30% Dec
+                </div>
+              </div>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Active Students</p>
+                    <p className="text-2xl font-bold text-purple-600">750</p>
+                  </div>
+                  <GraduationCap className="w-8 h-8 text-purple-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  First cohort - AI-powered learning
+                </div>
+              </div>
+            </>
+          )}
+          {selectedYear === '2028' && (
+            <>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Year 2 Revenue Target</p>
+                    <p className="text-2xl font-bold text-green-600">{formatCurrency(45000000)}</p>
+                  </div>
+                  <TrendingUp className="w-8 h-8 text-green-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  1,500 students at full capacity
+                </div>
+              </div>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Student Target</p>
+                    <p className="text-2xl font-bold text-purple-600">1,500</p>
+                  </div>
+                  <Users className="w-8 h-8 text-purple-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  Full building capacity
+                </div>
+              </div>
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Expansion Phase</p>
+                    <p className="text-2xl font-bold text-blue-600">Series A</p>
+                  </div>
+                  <Target className="w-8 h-8 text-blue-600" />
+                </div>
+                <div className="mt-4 text-sm text-gray-500">
+                  Growth capital for scaling
+                </div>
+              </div>
+            </>
+          )}
         </div>
       )}
 
       {/* Quarterly Timeline */}
-      {displayData && (
+      {yearData && (
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">{selectedYear} Timeline</h3>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -451,28 +573,37 @@ const MasterTimeline = () => {
                 <div className="text-center">
                   <h4 className="text-lg font-bold text-gray-900">{quarter} {selectedYear}</h4>
                   <div className="w-full h-1 bg-gray-200 rounded-full mt-2">
-                    <div className="h-1 bg-indigo-500 rounded-full" style={{ width: '25%' }}></div>
+                    <div
+                      className={`h-1 rounded-full ${
+                        selectedYear === '2026' ? 'bg-blue-500' :
+                        selectedYear === '2027' ? 'bg-green-500' : 'bg-purple-500'
+                      }`}
+                      style={{ width: '100%' }}
+                    ></div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  {(displayData.quarter[quarter] || []).map((milestone) => (
-                    <div 
+                  {(yearData.quarter[quarter] || []).map((milestone) => (
+                    <div
                       key={milestone.id}
-                      className={`border rounded-lg p-4 ${getSectorColor(milestone.sector)} ${
+                      className={`border rounded-lg p-4 ${getCategoryColor(milestone.category)} ${
                         milestone.critical ? 'border-l-4 border-l-red-400' : ''
                       }`}
                     >
                       <div className="flex items-start space-x-3">
                         <div className="flex items-center space-x-2">
                           {getStatusIcon(milestone.status)}
-                          {getSectorIcon(milestone.sector)}
+                          {getCategoryIcon(milestone.category)}
                         </div>
                         <div className="flex-1 min-w-0">
                           <h5 className="font-medium text-gray-900 text-sm leading-tight">
                             {milestone.title}
                             {milestone.critical && <span className="text-red-500 ml-1">*</span>}
                           </h5>
+                          <p className="text-xs text-blue-600 font-medium mt-0.5">
+                            {milestone.date}
+                          </p>
                           <p className="text-xs text-gray-600 mt-1 leading-tight">
                             {milestone.description}
                           </p>
@@ -481,7 +612,7 @@ const MasterTimeline = () => {
                     </div>
                   ))}
 
-                  {(!displayData.quarter[quarter] || displayData.quarter[quarter].length === 0) && (
+                  {(!yearData.quarter[quarter] || yearData.quarter[quarter].length === 0) && (
                     <div className="text-center text-gray-400 py-4">
                       <Calendar className="w-8 h-8 mx-auto mb-2" />
                       <p className="text-sm">No milestones in {quarter}</p>
@@ -494,41 +625,58 @@ const MasterTimeline = () => {
         </div>
       )}
 
-      {/* Strategic Timeline Overview */}
-      <div className="bg-gradient-to-r from-blue-50 to-emerald-50 border border-blue-200 rounded-lg p-6">
+      {/* Key Phases Overview */}
+      <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-6">
         <div className="flex items-start space-x-3">
           <Target className="w-6 h-6 text-blue-600 mt-0.5" />
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Strategic Timeline Overview</h4>
+          <div className="w-full">
+            <h4 className="font-semibold text-gray-900 mb-3">Project Phases Overview</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="border-l-4 border-blue-500 pl-4">
-                <div className="font-medium text-blue-900">Phase 1: Foundation (2025-2027)</div>
+                <div className="font-medium text-blue-900">Phase 1: Foundation (2026)</div>
                 <ul className="text-sm text-blue-800 mt-2 space-y-1">
-                  <li>• Private sector validation and cash generation</li>
-                  <li>• Technology platform development and launch</li>
-                  <li>• First public sector pilot agreements</li>
-                  <li>• Flagship school operational proof</li>
+                  <li>• Bridge financing ($2M) - Jan</li>
+                  <li>• Building contract & permits - Q1</li>
+                  <li>• Construction starts - Apr 15</li>
+                  <li>• Government funding (R$45M) - Jun</li>
+                  <li>• Platform MVP ready - Sep</li>
+                  <li>• 750 enrollments - Dec</li>
                 </ul>
               </div>
-              <div className="border-l-4 border-emerald-500 pl-4">
-                <div className="font-medium text-emerald-900">Phase 2: Scaling (2027-2029)</div>
-                <ul className="text-sm text-emerald-800 mt-2 space-y-1">
-                  <li>• Public pilot validation and expansion</li>
-                  <li>• Franchise development and growth</li>
-                  <li>• Regional partnerships across major cities</li>
-                  <li>• Technology adoption model scaling</li>
+              <div className="border-l-4 border-green-500 pl-4">
+                <div className="font-medium text-green-900">Phase 2: Launch (2027)</div>
+                <ul className="text-sm text-green-800 mt-2 space-y-1">
+                  <li>• Phase 1 construction (70%) - Jan 15</li>
+                  <li>• <strong>School Opens - Feb 1</strong></li>
+                  <li>• First learning outcomes - Q2</li>
+                  <li>• Phase 2 construction (30%) - Dec</li>
+                  <li>• Year 1 revenue: R$22.5M</li>
                 </ul>
               </div>
               <div className="border-l-4 border-purple-500 pl-4">
-                <div className="font-medium text-purple-900">Phase 3: Dominance (2029-2035)</div>
+                <div className="font-medium text-purple-900">Phase 3: Growth (2028+)</div>
                 <ul className="text-sm text-purple-800 mt-2 space-y-1">
-                  <li>• Public sector becomes largest revenue stream</li>
-                  <li>• National scale achievement (1M+ students)</li>
-                  <li>• International expansion preparation</li>
-                  <li>• Market leadership establishment</li>
+                  <li>• Year 2: 1,500 students</li>
+                  <li>• Revenue: R$45M</li>
+                  <li>• Expansion planning</li>
+                  <li>• Series A preparation</li>
+                  <li>• Franchise model evaluation</li>
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Critical Path Alert */}
+      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="flex items-center space-x-3">
+          <AlertCircle className="w-5 h-5 text-red-600" />
+          <div>
+            <span className="font-medium text-red-900">Critical Path Items</span>
+            <span className="text-red-700 text-sm ml-2">
+              Items marked with <span className="text-red-500">*</span> are on the critical path and cannot be delayed without impacting the Feb 1, 2027 launch.
+            </span>
           </div>
         </div>
       </div>
